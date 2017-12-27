@@ -1,0 +1,103 @@
+body, h1, h2, h3, h4, h5, span, p {
+  font-family: Univers LT Std;
+}
+.divcon {
+    margin-top: 80px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+td, tr {
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  font-size: 14px;
+  vertical-align: baseline;
+}
+
+thead {
+  font-weight: bold;
+  background: #eee;
+}
+
+.pto tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.btn {
+  margin-right: 15px;
+}
+
+.btn-error:hover,
+.btn-error:focus {
+  background: #ccc;
+}
+form ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+form ul li > div {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: 10px 5px;
+}
+form ul li > div > label {
+    font-weight: 700;
+    margin-right: 10px;
+    min-width: 150px;
+    text-align: right;
+    padding: 6px 9px;
+}
+form ul li > button {
+    float: right;
+    white-space: nowrap;
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #c9302c;
+    border: 1px solid #c9302c;
+    padding: 5px 8px;
+}
+form ul li:first-child button {
+    float: none;
+    white-space: nowrap;
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #d5d5d5;
+    border: 1px solid #d5d5d5;
+    color: #000;
+}
+form ul li > button::before {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 14px;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: '\F1F8';
+}
+form ul li:first-child button::before {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: '\F067';
+    margin-right: 5px;
+}
+
+footer {
+  margin-top: 80px;
+  position: inherit;
+}
