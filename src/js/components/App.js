@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import Search from '../components/Search'
+import OrderProductTable from '../containers/PatientOrderProducts'
 
 export default class App extends Component {
 	componentWillMount() {

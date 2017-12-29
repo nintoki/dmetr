@@ -4,7 +4,7 @@ import {
 	CREATE_ORDER_PRODUCT, CREATE_ORDER_PRODUCT_SUCCESS, CREATE_ORDER_PRODUCT_FAILURE, RESET_NEW_ORDER_PRODUCT,
 	UPDATE_ORDER_PRODUCT, UPDATE_ORDER_PRODUCT_SUCCESS, UPDATE_ORDER_PRODUCT_FAILURE,
 	DELETE_ORDER_PRODUCT, DELETE_ORDER_PRODUCT_SUCCESS, DELETE_ORDER_PRODUCT_FAILURE, RESET_DELETED_ORDER_PRODUCT
-} from '../actions/orderActions';
+} from '../actions/orderProductActions';
 
 const INITIAL_STATE = { orderProductTable: {order_products: [], error:null, loading: false},
             newOrderProduct:{order_product:null, error: null, loading: false},
@@ -26,6 +26,7 @@ export default function(state = INITIAL_STATE, action) {
   case FETCH_PTORDER_PRODUCTS:// start fetching orders and set loading = true
   	return { ...state, orderProductTable: {order_products:[], error: null, loading: true} };
   case RESET_ORDER_PRODUCTS:// reset orderList to initial state
+	  console.log("reset reducer")
     return { ...state, orderProductTable: {order_products: [], error:null, loading: false} };
 
     case FETCH_ORDER_PRODUCT:

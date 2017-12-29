@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Moment from 'react-moment'
 import { Switch, Route, Link } from 'react-router-dom'
+import OrderProductTable from '../containers/PatientOrderProducts'
 
 class OrderTable extends Component {
   componentWillMount() {
@@ -9,15 +10,17 @@ class OrderTable extends Component {
   }
 
   renderOrders(orders) {
+    console.log("order props", this.props)
     return orders.map((orders) => {
       return (
         <tr key={orders.id}>
           <td><Moment format="MM/DD/YY">{orders.created}</Moment></td>
           <td>{orders.id}</td>
-          <td>ORDER PRODUCTS HERE</td>
-          <td>{orders.clinic}</td>
+          <td>
+            <OrderProductTable id={orders.id}/>
+          </td>
+          <td class={ orders.oot == 1 ? "oot" : "" }>{orders.clinic}</td>
           <td>{orders.insurance}</td>
-          <td>{orders.oot}</td>
           <td><Link to={"/order/" + orders.id}><button class="btn btn-primary btn-sm">View</button></Link></td>
         </tr>
       );
@@ -45,9 +48,9 @@ class OrderTable extends Component {
               <td>Date</td>
               <td>Order #</td>
               <td>Products</td>
+              <td>Phase</td>
               <td>Clinic</td>
               <td>Insurance</td>
-              <td>OOT</td>
               <td></td>
             </tr>
           </thead>

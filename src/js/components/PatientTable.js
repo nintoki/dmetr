@@ -13,7 +13,6 @@ class PatientTable extends Component {
     return patients.map((patients) => {
       return (
         <tr key={patients.id}>
-          <td><Moment format="MM/DD/YY">{patients.created}</Moment></td>
           <td>{patients.id}</td>
           <td>{patients.last_name}, {patients.first_name}</td>
           <td>{patients.phone}</td>
@@ -36,7 +35,7 @@ class PatientTable extends Component {
     const { patients, loading, error } = this.props.patientTable;
 
     if(loading) {
-      return <div className="container"><h1>Patients</h1><h3>Loading...</h3></div>
+      return <div className="container divcon"><h1>Patients</h1><h3>Loading...</h3></div>
     } else if(error) {
       return <div className="alert alert-danger">Error: {error.message}</div>
     }
@@ -47,7 +46,6 @@ class PatientTable extends Component {
         <table>
           <thead>
             <tr>
-              <td>Date</td>
               <td>ID</td>
               <td>Name</td>
               <td>Phone</td>

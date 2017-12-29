@@ -46,6 +46,7 @@ export function fetchOrderProducts() {
 }
 
 export function fetchOrderProductsSuccess(order_products) {
+  console.log("fetched order products")
   return {
     type: FETCH_ORDER_PRODUCTS_SUCCESS,
     payload: order_products
@@ -59,9 +60,10 @@ export function fetchOrderProductsFailure(error) {
   };
 }
 
-export function resetOrderProductFields() {
+export function resetOrderProducts() {
+  console.log("reset order products")
   return {
-    type: RESET_ORDER_PRODUCT_FIELDS
+    type: RESET_ORDER_PRODUCTS
   }
 }
 ;
