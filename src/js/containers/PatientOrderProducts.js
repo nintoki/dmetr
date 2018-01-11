@@ -19,4 +19,21 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+// function mapStateToProps(state, ownProps) {
+//   return {
+//     orderProductTable: state.order_products.orderProductTable[ownProps.id],
+//     order_id: ownProps.id
+//   };
+// }
+//
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     fetchPtOrderProducts: (id) => {
+//       dispatch(fetchPtOrderProducts(id)).then((response) => {
+//             !response.error ? dispatch(fetchOrderProductsSuccess(id, response.payload.data)) : dispatch(fetchOrderProductsFailure(response.payload.data));
+//           });
+//     }
+//   }
+// }
+
 export default connect(mapStateToProps, mapDispatchToProps)(OrderProductTable);

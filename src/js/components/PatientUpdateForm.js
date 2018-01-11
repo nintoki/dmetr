@@ -55,6 +55,8 @@ const dispatchAndUpdatePatient = (values, dispatch) => {
       // window.alert(`Success! : \n\n${JSON.stringify(values, null, 2)}`);
       //let other components know that everything is fine by updating the redux` state
       dispatch(updatePatientSuccess(result.payload.data)); //ps: this is same as dispatching RESET_USER_FIELDS
+      window.alert(`Patient Updated`);
+      history.back()
     });
 }
 
@@ -65,21 +67,10 @@ class PatientUpdateForm extends Component {
     router: PropTypes.object
   };
 
-  // constructor(props, context) {
-  //   super(props, context);
-  //   this.state = {
-  //     isEditing: true
-  //   };
-  // }
-
   // componentWillUnmount() {
   //   //Important! If your component is navigating based on some global state(from say componentWillReceiveProps)
   //   //always reset that global state back to null when you REMOUNT
   //    this.props.resetMe();
-  // }
-
-  // componentDidMount() {
-  //   this.setState({isEditing: !this.state.isEditing})
   // }
 
   renderError(activePatient) {
@@ -98,15 +89,6 @@ class PatientUpdateForm extends Component {
     // console.log("this.props", this.props)
     // console.log("this.state", this.state)
     const {handleSubmit, submitting, activePatient} = this.props;
-    const { patient, loading, error } = this.props.activePatient;
-    if (loading) {
-      return <div className="container">Loading...</div>;
-    } else if(error) {
-      return  <div className="alert alert-danger">{error.message}</div>
-    } else if(!patient) {
-      return <span />
-    }
-
     return (
       <div className='container divcon'>
         <h1>Update Patient</h1>

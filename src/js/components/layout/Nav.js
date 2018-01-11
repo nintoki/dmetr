@@ -1,12 +1,18 @@
 import React from "react";
 import { Link, Route, Switch } from 'react-router-dom';
 import App from "../../pages/App"
-import OrdersIndex from "../../pages/OrdersIndex"
-import OrderPage from "../../pages/OrderPage"
 import PatientsIndex from "../../pages/PatientsIndex"
 import PatientPage from "../../pages/PatientPage"
 import PatientSearch from "../../pages/PatientSearch"
 import PatientNew from "../../pages/PatientNew"
+import PatientUpdate from "../../pages/PatientUpdate"
+import OrdersIndex from "../../pages/OrdersIndex"
+import OrderPage from "../../pages/OrderPage"
+import OrderNew from "../../pages/OrderNew"
+import OrderUpdate from "../../pages/OrderUpdate"
+import OrderProductPage from "../../pages/OrderProductPage"
+import OrderProductNew from "../../pages/OrderProductNew"
+import OrderProductUpdate from "../../pages/OrderProductUpdate"
 
 export default class Nav extends React.Component {
   constructor() {
@@ -45,6 +51,9 @@ export default class Nav extends React.Component {
                 <li>
                   <Link to="/" onClick={this.toggleCollapse.bind(this)}>Home</Link>
                 </li>
+                {/* <li>
+                  <Link to="/search" onClick={this.toggleCollapse.bind(this)}>Search</Link>
+                </li> */}
                 <li>
                   <Link to="/orders" onClick={this.toggleCollapse.bind(this)}>Orders</Link>
                 </li>
@@ -58,12 +67,18 @@ export default class Nav extends React.Component {
 
         <Switch>
           {/* <Route exact path="/" component={App} /> */}
-          <Route path="/orders" component={OrdersIndex}/>
-          <Route path="/order/:id" component={OrderPage}/>
           <Route path="/patients" component={PatientsIndex}/>
           <Route path="/patient/:id" component={PatientPage}/>
-          <Route path="/search/" component={PatientSearch} />
+          <Route path="/search" component={PatientSearch} />
           <Route path="/patientNew" component={PatientNew} />
+          <Route path="/patientUpdate" component={PatientUpdate} />
+          <Route path="/orders" component={OrdersIndex}/>
+          <Route path="/order/:id" component={OrderPage}/>
+          <Route path="/orderNew" component={OrderNew} />
+          <Route path="/orderUpdate" component={OrderUpdate} />
+          <Route path="/orderProductNew" component={OrderProductNew} />
+          <Route path="/orderProduct/:id" component={OrderProductPage} />
+          <Route path="/orderProductUpdate" component={OrderProductUpdate} />
         </Switch>
       </div>
     );

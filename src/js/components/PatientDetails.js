@@ -5,24 +5,22 @@ import { reduxForm, Field, SubmissionError } from 'redux-form';
 import Moment from 'react-moment';
 import PatientOrders from '../containers/PatientOrders.js';
 import PatientUpdateForm from './PatientUpdateForm';
-import OrderFormContainer from '../containers/OrderFormContainer.js';
+import OrdersForm from '../containers/OrdersFormContainer.js';
 
 class PatientDetails extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
 
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      // patient: null,
-      isEditing: false,
-      makeOrder: false
-    };
-    // this.updatePatientState = this.updatePatientState.bind(this);
-    this.toggleEdit = this.toggleEdit.bind(this);
-    this.toggleMake = this.toggleMake.bind(this);
-  }
+  // constructor(props, context) {
+  //   super(props, context);
+  //   this.state = {
+  //     // patient: null,
+  //     isEditing: false
+  //   };
+  //   // this.updatePatientState = this.updatePatientState.bind(this);
+  //   this.toggleEdit = this.toggleEdit.bind(this);
+  // }
 
   // componentWillReceiveProps(nextProps) {
   //   if (this.props.activePatient.id != nextProps.activePatient.id) {
@@ -30,12 +28,9 @@ class PatientDetails extends Component {
   //   }
   // }
 
-  toggleEdit() {
-    this.setState({isEditing: !this.state.isEditing})
-  }
-  toggleMake() {
-    this.setState({makeOrder: !this.state.makeOrder})
-  }
+  // toggleEdit() {
+  //   this.setState({isEditing: !this.state.isEditing})
+  // }
 
   // updatePatientState(event) {
   //   const patient = this.props;
@@ -54,8 +49,8 @@ class PatientDetails extends Component {
     }
 
   render() {
-    console.log("this.state", this.state);
-    console.log("this.props", this.props);
+    // console.log("pt details", this.props)
+    // console.log("pt state", this.state)
     const { patient, loading, error } = this.props.activePatient;
     if (loading) {
       return <div className="container">Loading...</div>;
@@ -63,21 +58,16 @@ class PatientDetails extends Component {
       return  <div className="alert alert-danger">{error.message}</div>
     } else if(!patient) {
       return <span />
-    } else if(this.state.isEditing) {
-      return (
-      <div>
-        <PatientUpdateForm {...this.props}
-          initialValues={this.props.activePatient.patient}
-          // onChange={this.updatePatientState}
-        />
-      </div>)
-    } else if(this.state.makeOrder) {
-      return (
-        <div>
-          <OrderFormContainer initialValues={this.props}/>
-        </div>
-      )
     }
+    // else if(this.state.isEditing) {
+    //   return (
+    //   <div>
+    //     <PatientUpdateForm {...this.props}
+    //       initialValues={this.props.activePatient.patient}
+    //       // onChange={this.updatePatientState}
+    //     />
+    //   </div>)
+    // }
 
     var divStyle = {
       padding: '15px 25px',
@@ -115,11 +105,15 @@ class PatientDetails extends Component {
                   </ol>
                 </div>
               </div>
-              <button onClick={this.toggleEdit}>edit</button>
+              <Link to={{
+                pathname: '/patientUpdate',
+                state: {activePatient: this.props.activePatient}
+              }}>
+                <button>edit</button>
+              </Link>
             </div>
             <div class="col-md-8"></div>
           </div>
-          <button class="btn btn-success" onClick={this.toggleMake}>New Order</button>
           <PatientOrders id={this.props.id}/>
       </div>
     );

@@ -1,9 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-// import { connect } from 'react-redux';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import renderField from './renderField';
-import renderTextArea from './renderTextArea';
-import renderStateDrop from './renderStateDrop';
 import { validateOrderFields, validateOrderFieldsSuccess, validateOrderFieldsFailure } from '../actions/orderActions';
 import { updateOrder, updateOrderSuccess, updateOrderFailure } from '../actions/orderActions';
 
@@ -22,7 +19,6 @@ function validate(values) {
 }
 
 
-
 //For any field errors upon submission (i.e. not instant check)
 const dispatchAndUpdateOrder = (values, dispatch) => {
   return dispatch(updateOrder(values))
@@ -34,9 +30,10 @@ const dispatchAndUpdateOrder = (values, dispatch) => {
         dispatch(updateOrderFailure(result.payload.response.data));
         throw new SubmissionError(result.payload.response.data);
       }
-      // window.alert(`Success! : \n\n${JSON.stringify(values, null, 2)}`);
+      window.alert(`Success! : \n\n${JSON.stringify(values, null, 2)}`);
       //let other components know that everything is fine by updating the redux` state
       dispatch(updateOrderSuccess(result.payload.data)); //ps: this is same as dispatching RESET_USER_FIELDS
+      history.back()
     });
 }
 
@@ -47,12 +44,6 @@ class OrderUpdateForm extends Component {
     router: PropTypes.object
   };
 
-  // constructor(props, context) {
-  //   super(props, context);
-  //   this.state = {
-  //     isEditing: true
-  //   };
-  // }
 
   // componentWillUnmount() {
   //   //Important! If your component is navigating based on some global state(from say componentWillReceiveProps)
@@ -60,9 +51,6 @@ class OrderUpdateForm extends Component {
   //    this.props.resetMe();
   // }
 
-  // componentDidMount() {
-  //   this.setState({isEditing: !this.state.isEditing})
-  // }
 
   renderError(activeOrder) {
     if (activeOrder && activeOrder.error && activeOrder.error.message) {
@@ -77,20 +65,10 @@ class OrderUpdateForm extends Component {
   }
 
   render() {
-    // console.log("this.props", this.props)
-    // console.log("this.state", this.state)
+    console.log("this.props", this.props)
     const {handleSubmit, submitting, activeOrder} = this.props;
-    const { order, loading, error } = this.props.activeOrder;
-    if (loading) {
-      return <div className="container">Loading...</div>;
-    } else if(error) {
-      return  <div className="alert alert-danger">{error.message}</div>
-    } else if(!order) {
-      return <span />
-    }
-
     return (
-      <div className='container divcon'>
+      <div className='container'>
         <h1>Update Order</h1>
         { this.renderError(activeOrder) }
         <form onSubmit={ handleSubmit(dispatchAndUpdateOrder) } style={{marginRight: '50px'}}>
@@ -98,20 +76,30 @@ class OrderUpdateForm extends Component {
             <tbody>
               <tr>
                 <td>
+                  <div style={{height: 0}}>
+                    <Field
+                          name="patient_id"
+                          type="hidden"
+                          component={ renderField }/>
+                    <Field
+                          name="id"
+                          type="hidden"
+                          component={ renderField }/>
+                    <Field
+                          name="created"
+                          type="hidden"
+                          component={ renderField }/>
+                  </div>
                   <Field
-                    name="patient_id"
-                    type="hidden"
-                    component={ renderField }/>
+                        name="clinic"
+                        type="text"
+                        component={ renderField }
+                        label="Clinic*" />
                   <Field
-                         name="clinic"
-                         type="text"
-                         component={ renderField }
-                         label="Clinic*" />
-                  <Field
-                         name="insurance"
-                         type="text"
-                         component={ renderField }
-                         label="Insurance*" />
+                        name="insurance"
+                        type="text"
+                        component={ renderField }
+                        label="Insurance*" />
                    <div>
                      <label htmlFor="oot">Out of Town</label>
                      <div>

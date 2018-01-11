@@ -1,12 +1,10 @@
-import React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import Search from '../components/Search'
-import OrderProductTable from '../containers/PatientOrderProducts'
 
 export default class App extends Component {
-	componentWillMount() {
-    // this.props.loadUserFromToken();
-  }
+	// componentWillMount() {
+  //   this.props.loadUserFromToken();
+  // }
 
   render() {
     return (

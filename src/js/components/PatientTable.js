@@ -14,16 +14,14 @@ class PatientTable extends Component {
       return (
         <tr key={patients.id}>
           <td>{patients.id}</td>
-          <td>{patients.last_name}, {patients.first_name}</td>
+          <td><strong>{patients.last_name}, {patients.first_name}</strong></td>
           <td>{patients.phone}</td>
           <td>{patients.address_1}<br />{patients.address_2}<br />{patients.city}, {patients.st} {patients.zip}</td>
           <td>{patients.bt_id}</td>
           <td>
-            <ol>
-              <li>{patients.ins_1}</li>
-              <li>{patients.ins_2}</li>
-              <li>{patients.ins_3}</li>
-            </ol>
+              {patients.ins_1}<br />
+              {patients.ins_2}<br />
+              {patients.ins_3}<br />
           </td>
           <td><Link to={"patient/" + patients.id}><button class="btn btn-primary btn-sm">View</button></Link></td>
         </tr>
@@ -43,7 +41,7 @@ class PatientTable extends Component {
     return (
       <div class="container divcon">
         <h1>Patients</h1>
-        <table>
+        <table class="pto">
           <thead>
             <tr>
               <td>ID</td>

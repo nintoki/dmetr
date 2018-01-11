@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Moment from 'react-moment'
 import { Switch, Route, Link } from 'react-router-dom'
-import OrderProductTable from '../containers/PatientOrderProducts'
 
 class OrderTable extends Component {
   componentWillMount() {
@@ -13,11 +12,105 @@ class OrderTable extends Component {
     console.log("order props", this.props)
     return orders.map((orders) => {
       return (
-        <tr key={orders.id}>
+        orders.description === null
+        ?
+        <tr key={orders.op_id}>
           <td><Moment format="MM/DD/YY">{orders.created}</Moment></td>
-          <td>{orders.id}</td>
+          <td class={ orders.rush == 1 ? "rush" : "" }>{orders.id}</td>
           <td>
-            <OrderProductTable id={orders.id}/>
+            <strong>No products found.</strong>
+          </td>
+          <td></td>
+          <td class={ orders.oot == 1 ? "oot" : "" }>{orders.clinic}</td>
+          <td>{orders.insurance}</td>
+          <td><Link to={"/order/" + orders.id}><button class="btn btn-primary btn-sm">View</button></Link></td>
+        </tr>
+        :
+        <tr key={orders.op_id}>
+          <td><Moment format="MM/DD/YY">{orders.created}</Moment></td>
+          <td class={ orders.rush == 1 ? "rush" : "" }>{orders.id}</td>
+          <td>
+             {orders.short_desc} - {orders.description}
+            <br />
+            { orders.exchange == 1 ? <span class="badge badge-info">exchanged </span> : "" }
+            { orders.rtn == 1 ? <span class="badge badge-warning">returned</span> : "" }
+          </td>
+          <td class="td-op op1">
+            <div class="opdiv">
+              <div>
+                <input
+                  type="checkbox"
+                  name="op1_1"
+                  id="op1_1"
+                  checked={ orders.op1_1 == 1 }
+                  readOnly
+                />
+                <label for="op1_1" />
+              </div>
+              <div>
+                { (orders.op1_1_dt === null || orders.op1_1_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op1_1_dt}</Moment>}
+              </div>
+            </div>
+            <div class="opdiv">
+              <div>
+                <input
+                  type="checkbox"
+                  name="op1_2"
+                  id="op1_2"
+                  checked={ orders.op1_2 == 1 }
+                  readOnly
+                />
+                <label for="op1_2" />
+              </div>
+              <div>
+                { (orders.op1_2_dt === null || orders.op1_2_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op1_2_dt}</Moment>}
+              </div>
+            </div>
+            <div class="opdiv">
+              <div>
+                <input
+                  type="checkbox"
+                  name="op1_3"
+                  id="op1_3"
+                  checked={ orders.op1_3 == 1 }
+                  readOnly
+                />
+                <label for="op1_3" />
+              </div>
+              <div>
+                { (orders.op1_3_dt === null || orders.op1_3_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op1_3_dt}</Moment>}
+              </div>
+            </div>
+            <div class="opdiv">
+              <div>
+                <input
+                  type="checkbox"
+                  name="op1_4"
+                  id="op1_4"
+                  checked={ orders.op1_4 == 1 }
+                  readOnly
+                />
+                <label for="op1_4" />
+              </div>
+              <div>
+                { (orders.op1_4_dt === null || orders.op1_4_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op1_4_dt}</Moment>}
+              </div>
+            </div>
+            <div class="opdiv">
+              <div>
+                <input
+                  type="checkbox"
+                  name="op1_5"
+                  id="op1_5"
+                  checked={ orders.op1_5 == 1 }
+                  readOnly
+                />
+                <label for="op1_5" />
+              </div>
+              <div>
+                { (orders.op1_5_dt === null || orders.op1_5_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op1_5_dt}</Moment>}
+              </div>
+            </div>
           </td>
           <td class={ orders.oot == 1 ? "oot" : "" }>{orders.clinic}</td>
           <td>{orders.insurance}</td>
@@ -41,7 +134,16 @@ class OrderTable extends Component {
           ? <div className='container divcon'><h2>No orders found.</h2></div>
           :
       <div class="container divcon">
-        <h1>Orders</h1>
+        <div>
+          <h1 style={{float:'left'}}>Orders</h1>
+          <Link to={{
+            pathname: '/orderNew',
+            state: {patient_id: this.props.patient_id, oot: false}
+          }}>
+          <button class="btn btn-success" style={{float:'right', marginTop:'20px'}}>
+            New Order
+          </button></Link>
+        </div>
         <table class="pto">
           <thead>
             <tr>

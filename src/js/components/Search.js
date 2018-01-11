@@ -34,13 +34,12 @@ export default class Search extends Component {
 						<div style={{display:'inline-block', verticalAlign:'middle'}}>
 							<input style={{height:'45px', width:'260px', padding:'5px 15px'}} name="searchTerm" id="searchTerm" value={ this.state.searchTerm } onChange={this.onInputChange}></input>
 						</div>
-						<Link style={{display:'inline-block', height:'45px'}} class="btn btn-primary" to={{
+						<Link class="btn btn-primary" style={{display:'inline-block', height:'45px'}} to={{
 							pathname: '/search',
 							state: {searchTerm: this.state.searchTerm}
 						}}>
-							Search
+								Search
 						</Link>
-
 						<div style={{marginTop:'40px', paddingTop:'40px', borderTop:'1px solid #ccc'}}>
 							<Link class="btn btn-block btn-success" to="/patientNew">Create New Patient</Link>
 						</div>

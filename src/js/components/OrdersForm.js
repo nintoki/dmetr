@@ -33,6 +33,7 @@ const dispatchAndCreateOrder = (values, dispatch) => {
       window.alert(`Success! : \n\n${JSON.stringify(values, null, 2)}`);
       //let other components know that everything is fine by updating the redux` state
       dispatch(createOrderSuccess(result.payload.data)); //ps: this is same as dispatching RESET_USER_FIELDS
+			history.back();
     });
 }
 
@@ -68,27 +69,6 @@ class OrdersForm extends Component {
   }
   render() {
     console.log("this.props", this.props);
-    const renderProducts = ({ fields, meta: { error } }) => (
-      <ul>
-        <li>
-          <button type="button" onClick={() => fields.push()}>Add Product</button>
-        </li>
-        {fields.map((product, index) =>
-          <li key={index}>
-            <button
-              type="button"
-              title="Remove Product"
-              onClick={() => fields.remove(index)} />
-            <Field
-              name={`product_${index + 1}`}
-              type="text"
-              component={renderField}
-              label={`Product ${index + 1}`}/>
-          </li>
-        )}
-        {error && <li className="error">{error}</li>}
-      </ul>
-    )
 
     const {handleSubmit, submitting, newOrder} = this.props;
     return (
@@ -101,19 +81,19 @@ class OrdersForm extends Component {
               <tr>
                 <td>
                   <Field
-                    name="patient_id"
-                    type="hidden"
-                    component={ renderField }/>
+                     name="patient_id"
+                     type="hidden"
+                     component={ renderField }/>
                   <Field
-                         name="clinic"
-                         type="text"
-                         component={ renderField }
-                         label="Clinic*" />
+                     name="clinic"
+                     type="text"
+                     component={ renderField }
+                     label="Clinic*" />
                   <Field
-                         name="insurance"
-                         type="text"
-                         component={ renderField }
-                         label="Insurance*" />
+                     name="insurance"
+                     type="text"
+                     component={ renderField }
+                     label="Insurance*" />
                    <div>
                      <label htmlFor="oot">Out of Town</label>
                      <div>
@@ -124,7 +104,6 @@ class OrdersForm extends Component {
               </tr>
             </tbody>
           </table>
-              {/* <FieldArray name="products" component={renderProducts}/> */}
           <div style={{marginTop: '20px'}}>
             <button
                     type="submit"

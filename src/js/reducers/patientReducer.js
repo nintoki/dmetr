@@ -50,6 +50,7 @@ export default function(state = INITIAL_STATE, action) {
   case CREATE_PATIENT:
     return {...state, newPatient: {...state.newPatient, loading: true}}
   case CREATE_PATIENT_SUCCESS:
+	console.log("reducer create success")
     return {...state, newPatient: {patient:action.payload, error:null, loading: false}}
   case CREATE_PATIENT_FAILURE:
     error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
@@ -71,8 +72,9 @@ export default function(state = INITIAL_STATE, action) {
 	case UPDATE_PATIENT:
     return { ...state, activePatient:{...state.activePatient, loading: true}};
   case UPDATE_PATIENT_SUCCESS:
+	console.log("reducer update success")
 			// return [
-      //   ...state, Object.assign({}, action.patient)
+      //   ...state,  Object.assign({}, action.activePatient)
 			// ]
     return { ...state, activePatient: {patient: action.payload, error:null, loading: false}};
   case UPDATE_PATIENT_FAILURE:

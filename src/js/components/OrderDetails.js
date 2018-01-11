@@ -1,27 +1,27 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { reduxForm, Field, SubmissionError } from 'redux-form';
 import Moment from 'react-moment'
-import OrderUpdateForm from './OrderUpdateForm';
+// import OrderUpdateForm from './OrderUpdateForm';
+import OrderProductTable from '../containers/PatientOrderProducts'
 
 class OrderDetails extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
 
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      // patient: null,
-      isEditing: false,
-    };
-    this.toggleEdit = this.toggleEdit.bind(this);
-  }
-
-  toggleEdit() {
-    this.setState({isEditing: !this.state.isEditing})
-  }
+  // constructor(props, context) {
+  //   super(props, context);
+  //   this.state = {
+  //     // patient: null,
+  //     isEditing: false,
+  //   };
+  //   this.toggleEdit = this.toggleEdit.bind(this);
+  // }
+  //
+  // toggleEdit() {
+  //   this.setState({isEditing: !this.state.isEditing})
+  // }
 
   componentWillUnmount() {
     //Important! If your component is navigating based on some global state(from say componentWillReceiveProps)
@@ -41,15 +41,15 @@ class OrderDetails extends Component {
       return  <div className="alert alert-danger">{error.message}</div>
     } else if(!order) {
       return <span />
-    } else if(this.state.isEditing) {
-      return (
-      <div>
-        <OrderUpdateForm {...this.props}
-          initialValues={this.props.activeOrder.order}
-          // onChange={this.updatePatientState}
-        />
-      </div>)
     }
+    // else if(this.state.isEditing) {
+    //   return (
+    //   <div>
+    //     <OrderUpdateForm {...this.props}
+    //       initialValues={this.props.activeOrder.order}
+    //     />
+    //   </div>)
+    // }
 
     var divStyle = {
       padding: '15px 25px',
@@ -65,14 +65,14 @@ class OrderDetails extends Component {
       display: 'inline-table',
       marginRight: '20px',
     };
-    console.log(this.props);
+    console.log("order details",this.props);
     return (
 
       <div className="container">
           <Link to={"/patient/" + this.props.activeOrder.order.patient_id}><h1>{order.patient_name}</h1></Link>
           <div class="row">
             <div class="col-md-4" style={divStyle}>
-              <div style={fontMd}><Moment format="MM/DD/YY">{order.created}</Moment></div>
+              <div style={fontMd}><Moment format="MM/DD/YY - HH:MM">{order.created}</Moment></div>
               <div style={inlineCol}>
                 <div><strong>Order ID: </strong></div>
                 <div><strong>Clinic: </strong></div>
@@ -80,15 +80,19 @@ class OrderDetails extends Component {
               </div>
               <div style={inlineCol}>
                 <div>{order.id}</div>
-                <div>{order.clinic}</div>
+                <div class={ order.oot == 1 ? "oot" : "" }>{order.clinic}</div>
                 <div>{order.insurance}</div>
               </div>
-
-              <div>{order.oot}</div>
-              <button onClick={this.toggleEdit}>edit</button>
-
+              <Link to={{
+                pathname: '/orderUpdate',
+                state: {activeOrder: this.props.activeOrder}
+              }}>
+                <button>edit</button>
+              </Link>
             </div>
-            <div class="col-md-8"></div>
+            <div class="col-md-8">
+              <OrderProductTable id={order.id}/>
+            </div>
           </div>
 
       </div>

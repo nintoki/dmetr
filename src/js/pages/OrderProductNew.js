@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 // import HeaderContainer from '../containers/HeaderContainer.js';
-import OrdersForm from '../containers/OrdersFormContainer.js';
+import OrderProductsForm from '../containers/OrderProductsFormContainer.js';
 
-class OrderNew extends Component {
+class OrderProductNew extends Component {
   render() {
     return (
       <div class="container">
         {/* <HeaderContainer type="orders_new"/> */}
-        <OrdersForm initialValues={this.props.location.state}/>
+        <OrderProductsForm initialValues={this.props.location.state}/>
       </div>
     );
   }
 }
 
-export default OrderNew;
+export default OrderProductNew;

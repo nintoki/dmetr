@@ -42,16 +42,24 @@ export function fetchOrderProducts() {
   return {
     type: FETCH_ORDER_PRODUCTS,
     payload: request
-  };
+    };
 }
 
 export function fetchOrderProductsSuccess(order_products) {
-  console.log("fetched order products")
+  console.log("products fetched")
   return {
     type: FETCH_ORDER_PRODUCTS_SUCCESS,
     payload: order_products
   };
 }
+
+// export function fetchOrderProductsSuccess(id, order_products) {
+//   console.log("products fetched")
+//   return {
+//     type: FETCH_ORDER_PRODUCTS_SUCCESS,
+//     payload: { id, order_products }
+//   };
+// }
 
 export function fetchOrderProductsFailure(error) {
   return {
@@ -74,10 +82,12 @@ export function fetchPtOrderProducts(id) {
     headers: []
   });
 
+  console.log("fetching")
   return {
     type: FETCH_PTORDER_PRODUCTS,
     payload: request
   };
+
 }
 ;
 
@@ -180,16 +190,16 @@ export function updateOrderProduct(props) {
 }
 
 
-export function UpdateOrderProductSuccess(activeOrderProduct) {
-  console.log("UPDATE SUCCESS",props);
+export function updateOrderProductSuccess(activeOrderProduct) {
+  // console.log("UPDATE SUCCESS",props);
   return {
     type: UPDATE_ORDER_PRODUCT_SUCCESS,
     payload: activeOrderProduct
   };
 }
 
-export function UpdateOrderProductFailure(error) {
-  console.log("UPDATE FAILURE",props);
+export function updateOrderProductFailure(error) {
+  // console.log("UPDATE FAILURE",props);
   return {
     type: UPDATE_ORDER_PRODUCT_FAILURE,
     payload: error

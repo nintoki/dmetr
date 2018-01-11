@@ -15,13 +15,18 @@ class Header extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.deletedPatient.error && nextProps.deletedPatient.error.message) {//delete failure
-      alert(nextProps.deletedPatient.error.message || 'Could not delete. Please try again.');
+      alert(nextProps.deletedPatient.error.message || 'Could not delete patient. Please try again.');
     } else if(nextProps.deletedPatient.patient && !nextProps.deletedPatient.error) {//delete success
       this.context.router.history.push('/patients');
     };
     if(nextProps.deletedOrder.error && nextProps.deletedOrder.error.message) {//delete failure
-      alert(nextProps.deletedOrder.error.message || 'Could not delete. Please try again.');
+      alert(nextProps.deletedOrder.error.message || 'Could not delete order. Please try again.');
     } else if(nextProps.deletedOrder.order && !nextProps.deletedOrder.error) {//delete success
+      this.context.router.history.push('/patient/'+ this.props.patientId);
+    };
+    if(nextProps.deletedOrderProduct.error && nextProps.deletedOrderProduct.error.message) {//delete failure
+      alert(nextProps.deletedOrderProduct.error.message || 'Could not delete order product. Please try again.');
+    } else if(nextProps.deletedOrderProduct.order_product && !nextProps.deletedOrderProduct.error) {//delete success
       this.context.router.history.goBack();
     }
     // else if(this.props.user.user && !nextProps.user.user) {//logout (had user(this.props.user.user) but no loger the case (!nextProps.user.user))
@@ -111,6 +116,7 @@ class Header extends Component {
   		);
   	}
     else if(type === 'orders_show') {
+      console.log("header", this.props)
   			return (
   			 <div className="container">
     			{/* <ul className="nav nav-pills navbar-left">
@@ -123,6 +129,24 @@ class Header extends Component {
               &#8592; Back
           </button>
       			<button className="btn btn-warning pull-xs-right"  onClick={()=> {if(confirm('Delete Order?')) {this.props.onDeleteOrderClick()};}}>Delete Order</button>
+           {/* {this.renderSignInLinks(authenticatedUser)} */}
+    	   </div>
+  		);
+  	}
+    else if(type === 'order_products_show') {
+      console.log("header", this.props)
+  			return (
+  			 <div className="container">
+    			{/* <ul className="nav nav-pills navbar-left">
+      			<li style={{paddingRight: '10px'}} style={{color:'#337ab7',  fontSize: '17px'}}  role="presentation"><Link to="/">Back To Index</Link></li>
+    			</ul> */}
+          <button
+            className="btn btn-error"
+            onClick={this.context.router.history.goBack}
+            >
+              &#8592; Back
+          </button>
+      			<button className="btn btn-warning pull-xs-right"  onClick={()=> {if(confirm('Delete Order Product?')) {this.props.onDeleteOrderProductClick()};}}>Delete Order Product</button>
            {/* {this.renderSignInLinks(authenticatedUser)} */}
     	   </div>
   		);

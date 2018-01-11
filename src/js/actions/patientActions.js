@@ -225,15 +225,15 @@ export function updatePatient(props) {
 }
 
 
-export function UpdatePatientSuccess(activePatient) {
+export function updatePatientSuccess(props) {
   console.log("UPDATE SUCCESS",props);
   return {
     type: UPDATE_PATIENT_SUCCESS,
-    payload: activePatient
+    payload: props
   };
 }
 
-export function UpdatePatientFailure(error) {
+export function updatePatientFailure(error) {
   console.log("UPDATE FAILURE",props);
   return {
     type: UPDATE_PATIENT_FAILURE,

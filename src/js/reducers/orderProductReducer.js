@@ -18,13 +18,24 @@ export default function(state = INITIAL_STATE, action) {
 
   case FETCH_ORDER_PRODUCTS:// start fetching orders and set loading = true
   	return { ...state, orderProductTable: {order_products:[], error: null, loading: true} };
+
+
+
+	case FETCH_PTORDER_PRODUCTS:// start fetching orders and set loading = true
+		// console.log("reducer fetch", action.payload)
+		return { ...state, orderProductTable: {order_products:[], error: null, loading: true} };
+	  // return { ...state, orderProductTable: {...(state.orderProductTable || {}), [action.payload.id]: {order_products:[], error: null, loading: true}}};
+
   case FETCH_ORDER_PRODUCTS_SUCCESS:// return list of orders and make loading = false
+		// console.log("reducer success", action.payload)
     return { ...state, orderProductTable: {order_products: action.payload, error:null, loading: false} };
+		// return { ...state, orderProductTable: {...(state.orderProductTable || {}), [action.payload.id]: {order_products: action.payload.order_products, error:null, loading: false}}};
+
+
+
   case FETCH_ORDER_PRODUCTS_FAILURE:// return error and make loading = false
     error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
     return { ...state, orderProductTable: {order_products: [], error: error, loading: false} };
-  case FETCH_PTORDER_PRODUCTS:// start fetching orders and set loading = true
-  	return { ...state, orderProductTable: {order_products:[], error: null, loading: true} };
   case RESET_ORDER_PRODUCTS:// reset orderList to initial state
 	  console.log("reset reducer")
     return { ...state, orderProductTable: {order_products: [], error:null, loading: false} };

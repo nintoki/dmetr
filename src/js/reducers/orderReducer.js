@@ -49,10 +49,12 @@ export default function(state = INITIAL_STATE, action) {
       return {...state,  newOrder:{order:null, error:null, loading: false}}
 
 		case UPDATE_ORDER:
+		console.log("reducer update")
 	    return { ...state, activeOrder:{...state.activeOrder, loading: true}};
 	  case UPDATE_ORDER_SUCCESS:
+		console.log("reducer update success")
 				// return [
-	      //   ...state, Object.assign({}, action.order)
+	      //   ...state, activeOrder: {order: action.payload, error:null, loading: false}, Object.assign({}, activeOrder),
 				// ]
 	    return { ...state, activeOrder: {order: action.payload, error:null, loading: false}};
 	  case UPDATE_ORDER_FAILURE:

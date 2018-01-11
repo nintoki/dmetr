@@ -178,15 +178,15 @@ export function updateOrder(props) {
 }
 
 
-export function UpdateOrderSuccess(activeOrder) {
-  console.log("UPDATE SUCCESS",props);
+export function updateOrderSuccess(props) {
+  console.log("UPDATE SUCCESS", props);
   return {
     type: UPDATE_ORDER_SUCCESS,
-    payload: activeOrder
+    payload: props
   };
 }
 
-export function UpdateOrderFailure(error) {
+export function updateOrderFailure(error) {
   console.log("UPDATE FAILURE",props);
   return {
     type: UPDATE_ORDER_FAILURE,

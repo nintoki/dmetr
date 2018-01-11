@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, push } from 'react-router-dom';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import renderField from './renderField';
 import renderStateDrop from './renderStateDrop';
@@ -80,7 +80,10 @@ function validate(values) {
 const dispatchAndCreatePatient = (values, dispatch) => {
   return dispatch(createPatient(values))
     .then(result => {
-      console.log("values", values);
+      // console.log("values", values);
+      // let firstName = values.first_name;
+      // let lastName = values.last_name;
+      // let name = firstName + ' ' + lastName;
       // Note: Error's "data" is in result.payload.response.data (inside "response")
       // success's "data" is in result.payload.data
       if (result.payload.response && result.payload.response.status !== 200) {
@@ -90,6 +93,7 @@ const dispatchAndCreatePatient = (values, dispatch) => {
       window.alert(`Success! : \n\n${JSON.stringify(values, null, 2)}`);
       //let other components know that everything is fine by updating the redux` state
       dispatch(createPatientSuccess(result.payload.data)); //ps: this is same as dispatching RESET_USER_FIELDS
+			history.back()
     });
 }
 
@@ -106,11 +110,11 @@ class PatientsForm extends Component {
     this.props.resetMe();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.newPatient.patient && !nextProps.newPatient.error) {
-      this.context.router.push('/');
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.newPatient.patient && !nextProps.newPatient.error) {
+  //     this.context.router.push('/');
+  //   }
+  // }
 
   renderError(newPatient) {
     if (newPatient && newPatient.error && newPatient.error.message) {

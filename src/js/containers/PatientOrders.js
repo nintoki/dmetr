@@ -13,8 +13,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchPtOrders: (id) => {
       dispatch(fetchPtOrders(id)).then((response) => {
-            !response.error ? dispatch(fetchOrdersSuccess(response.payload.data)) : dispatch(fetchOrdersFailure(response.payload.data));
-          });
+          !response.error ? dispatch(fetchOrdersSuccess(response.payload.data)) : dispatch(fetchOrdersFailure(response.payload.data));
+      });
     }
   }
 }
