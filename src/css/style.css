@@ -95,7 +95,7 @@ td .op2 .opdiv input[type="checkbox"]:checked + label::before, .op2 .opdiv input
     border-color: #2780e3;
 }
 
-.td-op {
+.op1, .op2 {
   min-width: 255px;
 }
 

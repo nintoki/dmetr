@@ -30,6 +30,7 @@ const dispatchAndCreateOrder = (values, dispatch) => {
         dispatch(createOrderFailure(result.payload.response.data));
         throw new SubmissionError(result.payload.response.data);
       }
+      // window.alert(result.payload.data.message);
       window.alert(`Success! : \n\n${JSON.stringify(values, null, 2)}`);
       //let other components know that everything is fine by updating the redux` state
       dispatch(createOrderSuccess(result.payload.data)); //ps: this is same as dispatching RESET_USER_FIELDS
@@ -68,7 +69,7 @@ class OrdersForm extends Component {
     }
   }
   render() {
-    console.log("this.props", this.props);
+    // console.log("this.props", this.props);
 
     const {handleSubmit, submitting, newOrder} = this.props;
     return (

@@ -65,7 +65,7 @@ class OrderDetails extends Component {
       display: 'inline-table',
       marginRight: '20px',
     };
-    console.log("order details",this.props);
+    // console.log("order details",this.props);
     return (
 
       <div className="container">

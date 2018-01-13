@@ -11,7 +11,7 @@ class OrderProductTable extends Component {
   }
 
   renderOrderProducts(order_products) {
-    console.log("render op",this.props.orderProductTable.order_products)
+    // console.log("render op",this.props.orderProductTable.order_products)
     return order_products.map((order_products) => {
       return (
         <tr key={order_products.id}>

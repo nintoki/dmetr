@@ -30,9 +30,10 @@ const dispatchAndUpdateOrder = (values, dispatch) => {
         dispatch(updateOrderFailure(result.payload.response.data));
         throw new SubmissionError(result.payload.response.data);
       }
-      window.alert(`Success! : \n\n${JSON.stringify(values, null, 2)}`);
+      // window.alert(`Success! : \n\n${JSON.stringify(values, null, 2)}`);
       //let other components know that everything is fine by updating the redux` state
       dispatch(updateOrderSuccess(result.payload.data)); //ps: this is same as dispatching RESET_USER_FIELDS
+      window.alert(result.payload.data.message);
       history.back()
     });
 }
@@ -45,11 +46,11 @@ class OrderUpdateForm extends Component {
   };
 
 
-  // componentWillUnmount() {
-  //   //Important! If your component is navigating based on some global state(from say componentWillReceiveProps)
-  //   //always reset that global state back to null when you REMOUNT
-  //    this.props.resetMe();
-  // }
+  componentWillUnmount() {
+    //Important! If your component is navigating based on some global state(from say componentWillReceiveProps)
+    //always reset that global state back to null when you REMOUNT
+     this.props.resetMe();
+  }
 
 
   renderError(activeOrder) {
@@ -65,7 +66,7 @@ class OrderUpdateForm extends Component {
   }
 
   render() {
-    console.log("this.props", this.props)
+    // console.log("this.props", this.props)
     const {handleSubmit, submitting, activeOrder} = this.props;
     return (
       <div className='container'>

@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import Moment from 'react-moment';
 import PatientOrders from '../containers/PatientOrders.js';
-import PatientUpdateForm from './PatientUpdateForm';
-import OrdersForm from '../containers/OrdersFormContainer.js';
+// import PatientUpdateForm from './PatientUpdateForm';
+// import OrdersForm from '../containers/OrdersFormContainer.js';
 
 class PatientDetails extends Component {
   static contextTypes = {
@@ -49,7 +49,7 @@ class PatientDetails extends Component {
     }
 
   render() {
-    // console.log("pt details", this.props)
+    console.log("pt details", this.props)
     // console.log("pt state", this.state)
     const { patient, loading, error } = this.props.activePatient;
     if (loading) {

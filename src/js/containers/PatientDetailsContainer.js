@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 function mapStateToProps(globalState, ownProps) {
   return {
     activePatient: globalState.patients.activePatient,
-    patient_id: ownProps.id
+    patientId: ownProps.id
   };
 }
 

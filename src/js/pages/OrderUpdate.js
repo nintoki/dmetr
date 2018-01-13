@@ -9,7 +9,7 @@ class OrderUpdate extends Component {
 
   onDeleteOrderClick() {
     this.props.deleteOrder(this.props.match.params.id)
-      .then(() => { this.context.router.push('/'); });
+      // .then(() => { this.context.router.push('/'); });
   }
 
 

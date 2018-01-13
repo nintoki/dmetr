@@ -9,7 +9,7 @@ class OrderTable extends Component {
   }
 
   renderOrders(orders) {
-    console.log("order props", this.props)
+    // console.log("order props", this.props)
     return orders.map((orders) => {
       return (
         orders.description === null

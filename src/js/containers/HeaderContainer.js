@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       // }
 
     	// dispatch(deletePatient(ownProps.patient_id, token))
-    	dispatch(deletePatient(ownProps.patient_id))
+    	dispatch(deletePatient(ownProps.patientId))
       	.then((response) => {
             !response.error ? dispatch(deletePatientSuccess(response.payload)) : dispatch(deletePatientFailure(response.payload));
             alert(response.payload.data.message);

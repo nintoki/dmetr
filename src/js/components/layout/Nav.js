@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Route, Switch } from 'react-router-dom';
 import App from "../../pages/App"
+import SearchStart from "../../pages/SearchStart"
 import PatientsIndex from "../../pages/PatientsIndex"
 import PatientPage from "../../pages/PatientPage"
 import PatientSearch from "../../pages/PatientSearch"
@@ -52,7 +53,7 @@ export default class Nav extends React.Component {
                   <Link to="/" onClick={this.toggleCollapse.bind(this)}>Home</Link>
                 </li>
                 {/* <li>
-                  <Link to="/search" onClick={this.toggleCollapse.bind(this)}>Search</Link>
+                  <Link to="/searchStart" onClick={this.toggleCollapse.bind(this)}>Search</Link>
                 </li> */}
                 <li>
                   <Link to="/orders" onClick={this.toggleCollapse.bind(this)}>Orders</Link>
@@ -66,10 +67,11 @@ export default class Nav extends React.Component {
         </nav>
 
         <Switch>
-          {/* <Route exact path="/" component={App} /> */}
+          <Route exact path="/" component={SearchStart} />
+          {/* <Route path="/searchStart" component={SearchStart}/> */}
+          <Route path="/search" component={PatientSearch} />
           <Route path="/patients" component={PatientsIndex}/>
           <Route path="/patient/:id" component={PatientPage}/>
-          <Route path="/search" component={PatientSearch} />
           <Route path="/patientNew" component={PatientNew} />
           <Route path="/patientUpdate" component={PatientUpdate} />
           <Route path="/orders" component={OrdersIndex}/>

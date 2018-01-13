@@ -5,8 +5,8 @@ import { Router, Route } from "react-router-dom"
 import history from './history';
 import routes from './routes';
 import configureStore from "./store/configureStore.js"
-
 import App from "./pages/App"
+
 
 const client = document.getElementById('client')
 const store = configureStore();

@@ -29,7 +29,8 @@ const dispatchAndCreateOrderProduct = (values, dispatch) => {
         dispatch(createOrderProductFailure(result.payload.response.data));
         throw new SubmissionError(result.payload.response.data);
       }
-      window.alert(`Success! : \n\n${JSON.stringify(values, null, 2)}`);
+      window.alert(result.payload.data.message);
+      // window.alert(`Success! : \n\n${JSON.stringify(values, null, 2)}`);
       //let other components know that everything is fine by updating the redux` state
       dispatch(createOrderProductSuccess(result.payload.data)); //ps: this is same as dispatching RESET_USER_FIELDS
 			history.back();

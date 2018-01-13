@@ -13,7 +13,7 @@ class OrderProductUpdate extends Component {
   }
 
   render() {
-    console.log("op form pg", this)
+    // console.log("op form pg", this)
     var aop = this.props.location.state.activeOrderProduct;
     var aopStr = JSON.stringify(aop);
     var aopFilter = aopStr.toString().replace(/"([0]+|1)"/g, "$1");

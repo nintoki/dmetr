@@ -32,7 +32,6 @@ const mapDispatchToProps = (dispatch) => {
 // }
 
 function mapStateToProps(state) {
-  console.log("state", state)
   return {
     newOrderProduct: state.order_products.newOrderProduct,
     productTable: state.products.productTable

@@ -29,9 +29,10 @@ const dispatchAndUpdateOrderProduct = (values, dispatch) => {
         dispatch(updateOrderProductFailure(result.payload.response.data));
         throw new SubmissionError(result.payload.response.data);
       }
-      window.alert(`Success! : \n\n${JSON.stringify(values, null, 2)}`);
+      // window.alert(`Success! : \n\n${JSON.stringify(values, null, 2)}`);
       //let other components know that everything is fine by updating the redux` state
       dispatch(updateOrderProductSuccess(result.payload.data)); //ps: this is same as dispatching RESET_USER_FIELDS
+      window.alert(result.payload.data.message);
 			history.back();
     });
 }
@@ -78,7 +79,7 @@ class OrderProductUpdateForm extends Component {
   }
 
   render() {
-    console.log("this.props", this.props);
+    // console.log("this.props", this.props);
     const {handleSubmit, submitting, activeOrderProduct} = this.props;
     const productsOptions = this.props.productTable.products;
     let op = this.props.activeOrderProduct;
@@ -102,6 +103,10 @@ class OrderProductUpdateForm extends Component {
                      type="text"
                      component={ renderField }
                      label="description*" />
+                   <Field
+                     name="id"
+                     type="hidden"
+                     component={ renderField } />
                    <Field
                      name="order_id"
                      type="hidden"
