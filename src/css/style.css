@@ -20,6 +20,12 @@ thead {
   background: #eee;
 }
 
+.container .ReactTable .rt-th, .container .ReactTable .rt-td {
+    padding: 10px 15px;
+}
+.container .ReactTable .rt-th, .container .ReactTable .rt-td {
+    white-space: normal;
+}
 /* Checkboxes */
 .opcon {
     border: 1px solid #ccc;
@@ -62,14 +68,16 @@ td .opdiv input[type="checkbox"] + label::after, .opdiv input[type="checkbox"] +
     font-size: 16px;
     height: 25px;
     width: 25px;
-    margin-left: -25px;
+    margin-left: -21px;
 }
 td .opdiv input[type="checkbox"]:checked + label::after, .opdiv input[type="checkbox"]:checked + label::after {
     color: #ffffff;
     content: "\f00c";
     font-family: 'FontAwesome';
     line-height: 1.6;
-    position: absolute;
+    position: relative;
+    vertical-align: top;
+    text-align: center;
 }
 
 td .opdiv input[type="checkbox"] + label::before, .opdiv input[type="checkbox"] + label::before {
@@ -202,4 +210,10 @@ form ul li:first-child button::before {
 footer {
   margin-top: 80px;
   position: inherit;
+}
+
+@media (min-width: 1200px) {
+  .container {
+      width: 1280px;
+  }
 }

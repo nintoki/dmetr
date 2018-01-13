@@ -22,6 +22,7 @@
     "react-redux": "^4.4.5",
     "react-router-dom": "^4.2.2",
     "react-search-box": "0.0.6",
+    "react-table": "^6.7.6",
     "react-widgets": "^4.1.1",
     "redux": "^3.5.2",
     "redux-form": "^7.2.0",
