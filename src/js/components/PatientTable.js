@@ -3,30 +3,11 @@ import { connect } from 'react-redux'
 import Moment from 'react-moment'
 import { Switch, Route, Link } from 'react-router-dom'
 import PatientPage from "../pages/PatientPage"
+import ReactTable from 'react-table'
 
 class PatientTable extends Component {
   componentWillMount() {
     this.props.fetchPatients();
-  }
-
-  renderPatients(patients) {
-    return patients.map((patients) => {
-      return (
-        <tr key={patients.id}>
-          <td>{patients.id}</td>
-          <td><strong>{patients.last_name}, {patients.first_name}</strong></td>
-          <td>{patients.phone}</td>
-          <td>{patients.address_1}<br />{patients.address_2}<br />{patients.city}, {patients.st} {patients.zip}</td>
-          <td>{patients.bt_id}</td>
-          <td>
-              {patients.ins_1}<br />
-              {patients.ins_2}<br />
-              {patients.ins_3}<br />
-          </td>
-          <td><Link to={"patient/" + patients.id}><button class="btn btn-primary btn-sm">View</button></Link></td>
-        </tr>
-      );
-    });
   }
 
   render() {
@@ -41,22 +22,56 @@ class PatientTable extends Component {
     return (
       <div class="container divcon">
         <h1>Patients</h1>
-        <table class="pto">
-          <thead>
-            <tr>
-              <td>ID</td>
-              <td>Name</td>
-              <td>Phone</td>
-              <td>Address</td>
-              <td>BT ID</td>
-              <td>Insurance</td>
-              <td></td>
-            </tr>
-          </thead>
-          <tbody>
-            {this.renderPatients(patients)}
-          </tbody>
-        </table>
+        <ReactTable
+          data={patients}
+          columns={[
+            {
+              Header: 'ID',
+              accessor: 'id',
+            },
+            {
+              Header: 'Name',
+              Cell: row => (
+                <div>
+                  {row.original.patient_name}
+                </div>
+              )
+            },
+            {
+              Header: 'Address',
+              Cell: row => (
+                <div>
+                  {row.original.address_1}<br />{row.original.address_2}<br />{row.original.city}, {row.original.st} {row.original.zip}
+                </div>
+              )
+            },
+            {
+              Header: 'BT ID',
+              accessor: 'bt_id',
+              width: 80,
+            },
+            {
+              Header: 'Insurance',
+              width: 100,
+              Cell: row => (
+                <div>
+                  {row.original.ins_1}<br />
+                  {row.original.ins_2}<br />
+                  {row.original.ins_3}<br />
+                </div>
+              )
+            },
+            {
+              Header: '',
+              width: 80,
+              Cell: row => (
+                <Link to={"patient/" + row.original.id}><button class="btn btn-primary btn-sm">View</button></Link>
+              )
+            },
+          ]}
+          defaultPageSize={10}
+          className="-striped -highlight"
+        />
       </div>
     );
   }

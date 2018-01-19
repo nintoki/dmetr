@@ -11,7 +11,6 @@ export default class Search extends Component {
 		this.state = {
 			searchTerm: ''
 		};
-
 		this.onInputChange = this.onInputChange.bind(this);
 	}
 
@@ -25,26 +24,38 @@ export default class Search extends Component {
     // this.props.loadUserFromToken();
   }
 
+	handleKeyPress = (event) => {
+	  if(event.key == 'Enter'){
+			searchBtn.click();
+	  }
+	}
+
   render() {
 
     return (
-      <div class="container divcon">
-				<div class="row">
-					<div class="col-md-6" style={{textAlign:'center'}}>
+      <div className="container divcon">
+				<div className="row">
+					<div className="col-md-6" style={{textAlign:'center'}}>
+						<h1 style={{marginBottom:'40px'}}>Patient Search</h1>
 						<div style={{display:'inline-block', verticalAlign:'middle'}}>
-							<input style={{height:'45px', width:'260px', padding:'5px 15px'}} name="searchTerm" id="searchTerm" value={ this.state.searchTerm } onChange={this.onInputChange}></input>
+							<input style={{height:'45px', width:'260px', padding:'5px 15px'}} name="searchTerm" id="searchTerm" value={ this.state.searchTerm } onChange={this.onInputChange} onKeyPress={this.handleKeyPress}></input>
 						</div>
-						<Link class="btn btn-primary" style={{display:'inline-block', height:'45px'}} to={{
-							pathname: '/search',
-							state: {searchTerm: this.state.searchTerm}
-						}}>
+						<Link
+							id="searchBtn"
+							className="btn btn-primary"
+							style={{display:'inline-block', height:'45px'}}
+							to={{
+								pathname: '/search',
+								state: {searchTerm: this.state.searchTerm}
+							}}
+						>
 								Search
 						</Link>
 						<div style={{marginTop:'40px', paddingTop:'40px', borderTop:'1px solid #ccc'}}>
-							<Link class="btn btn-block btn-success" to="/patientNew">Create New Patient</Link>
+							<Link style={{maxWidth:'500px', margin:'0 auto'}} id="search" className="btn btn-block btn-success plusButton" to="/patientNew">Create New Patient</Link>
 						</div>
 					</div>
-					<div class="col-md-6"></div>
+					<div className="col-md-6"></div>
 				</div>
       </div>
     );

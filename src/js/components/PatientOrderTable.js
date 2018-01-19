@@ -16,105 +16,165 @@ class OrderTable extends Component {
         ?
         <tr key={orders.op_id}>
           <td><Moment format="MM/DD/YY">{orders.created}</Moment></td>
-          <td class={ orders.rush == 1 ? "rush" : "" }>{orders.id}</td>
+          <td className={ orders.rush == 1 ? "rush" : "" }>{orders.id}</td>
           <td>
-            <strong>No products found.</strong>
+            <strong className="red">No products found.</strong>
           </td>
           <td></td>
-          <td class={ orders.oot == 1 ? "oot" : "" }>{orders.clinic}</td>
+          <td className={ orders.oot == 1 ? "oot" : "" }>{orders.clinic}</td>
           <td>{orders.insurance}</td>
-          <td><Link to={"/order/" + orders.id}><button class="btn btn-primary btn-sm">View</button></Link></td>
+          <td style={{width:'85px'}}><Link to={"/order/" + orders.id}><button className="btn btn-primary btn-sm viewButton">View</button></Link></td>
         </tr>
         :
-        <tr key={orders.op_id}>
+        <tr key={orders.op_id}  class={ orders.status == 1 ? "archived" : "" }>
           <td><Moment format="MM/DD/YY">{orders.created}</Moment></td>
-          <td class={ orders.rush == 1 ? "rush" : "" }>{orders.id}</td>
+          <td className={ orders.rush == 1 ? "rush" : "" }><Link to={"/order/" + orders.id}>{orders.id}</Link></td>
           <td>
-             {orders.short_desc} - {orders.description}
+             {orders.short_desc} - <span className="light">{orders.description}</span>
             <br />
-            { orders.exchange == 1 ? <span class="badge badge-info">exchanged </span> : "" }
-            { orders.rtn == 1 ? <span class="badge badge-warning">returned</span> : "" }
+            { orders.exchange == 1 ? <span className="badge badge-info">exchanged </span> : "" }
+            { orders.rtn == 1 ? <span className="badge badge-warning">returned</span> : "" }
           </td>
-          <td class="td-op op1">
-            <div class="opdiv">
-              <div>
-                <input
-                  type="checkbox"
-                  name="op1_1"
-                  id="op1_1"
-                  checked={ orders.op1_1 == 1 }
-                  readOnly
-                />
-                <label for="op1_1" />
+          <td>
+            <div class={ orders.status == 1 ? "hidden" : "" }>
+              <div className={ (orders.op1_1 == 1 && orders.op1_2 == 1 && orders.op1_3 == 1 && orders.op1_4 == 1 && orders.op1_5 == 1 ) ? "hidden" : "op1" }>
+                <div className="opdiv">
+                  <div className="optit">Ins</div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="op1_1"
+                      id="op1_1"
+                      checked={ orders.op1_1 == 1 }
+                      readOnly
+                    />
+                    <label for="op1_1" />
+                  </div>
+                  <div>
+                    { (orders.op1_1_dt === null || orders.op1_1_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op1_1_dt}</Moment>}
+                  </div>
+                </div>
+                <div className="opdiv">
+                  <div className="optit">Meas</div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="op1_2"
+                      id="op1_2"
+                      checked={ orders.op1_2 == 1 }
+                      readOnly
+                    />
+                    <label for="op1_2" />
+                  </div>
+                  <div>
+                    { (orders.op1_2_dt === null || orders.op1_2_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op1_2_dt}</Moment>}
+                  </div>
+                </div>
+                <div className="opdiv">
+                  <div className="optit">Rx</div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="op1_3"
+                      id="op1_3"
+                      checked={ orders.op1_3 == 1 }
+                      readOnly
+                    />
+                    <label for="op1_3" />
+                  </div>
+                  <div>
+                    { (orders.op1_3_dt === null || orders.op1_3_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op1_3_dt}</Moment>}
+                  </div>
+                </div>
+                <div className="opdiv">
+                  <div className="optit">Note</div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="op1_4"
+                      id="op1_4"
+                      checked={ orders.op1_4 == 1 }
+                      readOnly
+                    />
+                    <label for="op1_4" />
+                  </div>
+                  <div>
+                    { (orders.op1_4_dt === null || orders.op1_4_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op1_4_dt}</Moment>}
+                  </div>
+                </div>
+                <div className="opdiv">
+                  <div className="optit">Auth</div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="op1_5"
+                      id="op1_5"
+                      checked={ orders.op1_5 == 1 }
+                      readOnly
+                    />
+                    <label for="op1_5" />
+                  </div>
+                  <div>
+                    { (orders.op1_5_dt === null || orders.op1_5_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op1_5_dt}</Moment>}
+                  </div>
+                </div>
               </div>
-              <div>
-                { (orders.op1_1_dt === null || orders.op1_1_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op1_1_dt}</Moment>}
+              <div className={ (orders.op1_1 == 1 && orders.op1_2 == 1 && orders.op1_3 == 1 && orders.op1_4 == 1 && orders.op1_5 == 1 ) ? "op2" : "hidden" }>
+                <div className="opdiv">
+                  <div className="optit">Ordr</div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="op2_1"
+                      id="op2_1"
+                      checked={ orders.op2_1 == 1 }
+                      readOnly
+                    />
+                    <label for="op2_1" />
+                  </div>
+                  <div>
+                    { (orders.op2_1_dt === null || orders.op2_1_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op2_1_dt}</Moment>}
+                  </div>
+                </div>
+                <div className="opdiv">
+                  <div className="optit">Rcvd</div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="op2_2"
+                      id="op2_2"
+                      checked={ orders.op2_2 == 1 }
+                      readOnly
+                    />
+                    <label for="op2_2" />
+                  </div>
+                  <div>
+                    { (orders.op2_2_dt === null || orders.op2_2_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op2_2_dt}</Moment>}
+                  </div>
+                </div>
+                <div className="opdiv">
+                  <div className="optit">Bill</div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="op2_3"
+                      id="op2_3"
+                      checked={ orders.op2_3 == 1 }
+                      readOnly
+                    />
+                    <label for="op2_3" />
+                  </div>
+                  <div>
+                    { (orders.op2_3_dt === null || orders.op2_3_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op2_3_dt}</Moment>}
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="opdiv">
-              <div>
-                <input
-                  type="checkbox"
-                  name="op1_2"
-                  id="op1_2"
-                  checked={ orders.op1_2 == 1 }
-                  readOnly
-                />
-                <label for="op1_2" />
-              </div>
-              <div>
-                { (orders.op1_2_dt === null || orders.op1_2_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op1_2_dt}</Moment>}
-              </div>
-            </div>
-            <div class="opdiv">
-              <div>
-                <input
-                  type="checkbox"
-                  name="op1_3"
-                  id="op1_3"
-                  checked={ orders.op1_3 == 1 }
-                  readOnly
-                />
-                <label for="op1_3" />
-              </div>
-              <div>
-                { (orders.op1_3_dt === null || orders.op1_3_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op1_3_dt}</Moment>}
-              </div>
-            </div>
-            <div class="opdiv">
-              <div>
-                <input
-                  type="checkbox"
-                  name="op1_4"
-                  id="op1_4"
-                  checked={ orders.op1_4 == 1 }
-                  readOnly
-                />
-                <label for="op1_4" />
-              </div>
-              <div>
-                { (orders.op1_4_dt === null || orders.op1_4_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op1_4_dt}</Moment>}
-              </div>
-            </div>
-            <div class="opdiv">
-              <div>
-                <input
-                  type="checkbox"
-                  name="op1_5"
-                  id="op1_5"
-                  checked={ orders.op1_5 == 1 }
-                  readOnly
-                />
-                <label for="op1_5" />
-              </div>
-              <div>
-                { (orders.op1_5_dt === null || orders.op1_5_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{orders.op1_5_dt}</Moment>}
-              </div>
-            </div>
+            <div class={ orders.status == 1 ? "" : "hidden" }><b>Product fulfilled</b> - <Moment format="MM/DD/YY">{orders.op2_3_dt}</Moment></div>
           </td>
-          <td class={ orders.oot == 1 ? "oot" : "" }>{orders.clinic}</td>
+          <td className={ orders.oot == 1 ? "oot" : "" }>{orders.clinic}</td>
           <td>{orders.insurance}</td>
-          <td><Link to={"/order/" + orders.id}><button class="btn btn-primary btn-sm">View</button></Link></td>
+          <td style={{width:'85px'}}><Link to={"/order/" + orders.id}><button className="btn btn-primary btn-sm viewButton">View</button></Link></td>
         </tr>
       );
     });
@@ -131,36 +191,49 @@ class OrderTable extends Component {
 
     return (
       !orders.length
-          ? <div className='container divcon'><h2>No orders found.</h2></div>
+          ? <div className='container divcon'>
+              <h2>No orders found.</h2>
+              <Link
+                to={{
+                  pathname: '/orderNew/'+this.props.patient_name,
+                  state: {patient_id: this.props.patient_id, oot: false}
+                }}
+              >
+                <button className="btn btn-success orderButton" style={{marginTop:'20px'}}>
+                  Add Order
+                </button>
+              </Link>
+            </div>
           :
-      <div class="container divcon">
-        <div>
-          <h1 style={{float:'left'}}>Orders</h1>
-          <Link to={{
-            pathname: '/orderNew',
-            state: {patient_id: this.props.patient_id, oot: false}
-          }}>
-          <button class="btn btn-success" style={{float:'right', marginTop:'20px'}}>
-            New Order
-          </button></Link>
+          <div className="col-md-12 modalDiv" style={{marginTop:'20px'}}>
+            <h2>Orders</h2>
+            <Link
+              to={{
+                pathname: '/orderNew/'+this.props.patient_name,
+                state: {patient_id: this.props.patient_id, oot: false}
+              }}
+              >
+                <button className="btn btn-success addButton">
+                  New Order
+                </button>
+            </Link>
+          <table className="pto">
+            <thead>
+              <tr>
+                <td>Date</td>
+                <td>Order #</td>
+                <td>Products</td>
+                <td>Phase</td>
+                <td>Clinic</td>
+                <td>Insurance</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderOrders(orders)}
+            </tbody>
+          </table>
         </div>
-        <table class="pto">
-          <thead>
-            <tr>
-              <td>Date</td>
-              <td>Order #</td>
-              <td>Products</td>
-              <td>Phase</td>
-              <td>Clinic</td>
-              <td>Insurance</td>
-              <td></td>
-            </tr>
-          </thead>
-          <tbody>
-            {this.renderOrders(orders)}
-          </tbody>
-        </table>
-      </div>
     );
   }
 }

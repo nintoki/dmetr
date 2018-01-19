@@ -16,7 +16,7 @@ class PatientPage extends Component {
   render() {
     return (
       <div className='container divcon'>
-        {/* <Header type="patients_show" patient_id={this.props.match.params.id}/> */}
+        {/* <Header /> */}
         <PatientDetailsContainer
           id={this.props.match.params.id}
           // patient_id={this.props.match.params.id}

@@ -13,7 +13,7 @@ class PatientUpdate extends Component {
 
 
   render() {
-    var ap = this.props.location.state.activePatient;
+    let ap = this.props.location.state.activePatient;
     // var apStr = JSON.stringify(ap);
     // var apFilter = apStr.toString().replace(/"([0]+|1)"/g, "$1");
     // var apClean = JSON.parse(apFilter);

@@ -68,12 +68,14 @@ class OrderUpdateForm extends Component {
   render() {
     // console.log("this.props", this.props)
     const {handleSubmit, submitting, activeOrder} = this.props;
+    let o = activeOrder.order;
     return (
-      <div className='container'>
-        <h1>Update Order</h1>
+      <div className='container divcon' style={{marginTop:'20px'}}>
+        <h1 className="formTit">Update Order: #{o.id}</h1>
+        <h4><b>Patient:</b> {o.patient_name}</h4>
         { this.renderError(activeOrder) }
         <form onSubmit={ handleSubmit(dispatchAndUpdateOrder) } style={{marginRight: '50px'}}>
-          <table>
+          <table className="orderForm">
             <tbody>
               <tr>
                 <td>
@@ -101,10 +103,17 @@ class OrderUpdateForm extends Component {
                         type="text"
                         component={ renderField }
                         label="Insurance*" />
+                  <div>
+                    <label htmlFor="oot">Out of Town</label>
+                    <div>
+                      <label className="switch">
+                        <Field name="oot" id="oot" component="input" type="checkbox"/>
+                        <span className="slider round"></span>
+                      </label>
+                    </div>
+                  </div>
                    <div>
-                     <label htmlFor="oot">Out of Town</label>
                      <div>
-                       <Field name="oot" id="oot" component="input" type="checkbox"/>
                      </div>
                    </div>
                 </td>

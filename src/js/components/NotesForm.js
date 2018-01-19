@@ -1,18 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field, FieldArray, SubmissionError } from 'redux-form';
 import renderField from './renderField';
-import { createOrder, createOrderSuccess, createOrderFailure, resetNewOrder } from '../actions/orderActions';
-// import { validateOrderFields, validateOrderFieldsSuccess, validateOrderFieldsFailure } from '../actions/orderActions';
+import renderTextArea from './renderTextArea';
+import { createNote, createNoteSuccess, createNoteFailure, resetNewNote } from '../actions/noteActions';
+// import { validateNoteFields, validateNoteFieldsSuccess, validateNoteFieldsFailure } from '../actions/noteActions';
 
 //Client side validation
 function validate(values) {
   const errors = {};
 
-  if (!values.clinic || values.clinic.trim() === '') {
-    errors.clinic = 'Enter clinic';
-  }
-  if (!values.insurance || values.insurance.trim() === '') {
-    errors.insurance = 'Enter insurance';
+  if (!values.note || values.note.trim() === '') {
+    errors.note = 'Enter note';
   }
 
   return errors;
@@ -20,19 +18,19 @@ function validate(values) {
 
 
 //For any field errors upon submission (i.e. not instant check)
-const dispatchAndCreateOrder = (values, dispatch) => {
-  return dispatch(createOrder(values))
+const dispatchAndCreateNote = (values, dispatch) => {
+  return dispatch(createNote(values))
     .then(result => {
       console.log("values", values);
       // Note: Error's "data" is in result.payload.response.data (inside "response")
       // success's "data" is in result.payload.data
       if (result.payload.response && result.payload.response.status !== 200) {
-        dispatch(createOrderFailure(result.payload.response.data));
+        dispatch(createNoteFailure(result.payload.response.data));
         throw new SubmissionError(result.payload.response.data);
       }
       // window.alert(`Success! : \n\n${JSON.stringify(values, null, 2)}`);
       //let other components know that everything is fine by updating the redux` state
-      dispatch(createOrderSuccess(result.payload.data)); //ps: this is same as dispatching RESET_USER_FIELDS
+      dispatch(createNoteSuccess(result.payload.data)); //ps: this is same as dispatching RESET_USER_FIELDS
       window.alert(result.payload.data.message);
 			history.back();
     });
@@ -40,7 +38,7 @@ const dispatchAndCreateOrder = (values, dispatch) => {
 
 
 
-class OrdersForm extends Component {
+class NotesForm extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
@@ -51,17 +49,11 @@ class OrdersForm extends Component {
     this.props.resetMe();
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.newOrder.order && !nextProps.newOrder.error) {
-  //     this.context.router.push('/');
-  //   }
-  // }
-
-  renderError(newOrder) {
-    if (newOrder && newOrder.error && newOrder.error.message) {
+  renderError(newNote) {
+    if (newNote && newNote.error && newNote.error.message) {
       return (
         <div className="alert alert-danger">
-          { newOrder ? newOrder.error.message : '' }
+          { newNote ? newNote.error.message : '' }
         </div>
         );
     } else {
@@ -71,14 +63,14 @@ class OrdersForm extends Component {
   render() {
     console.log("this.props", this.props);
 
-    const {handleSubmit, submitting, newOrder} = this.props;
+    const {handleSubmit, submitting, newNote} = this.props;
     return (
       <div className='container divcon'>
-        <h1 className="formTit">New Order</h1>
+        <h1 className="formTit">New Note</h1>
         <h4><b>Patient:</b> {this.props.patient_name}</h4>
-        { this.renderError(newOrder) }
-        <form onSubmit={ handleSubmit(dispatchAndCreateOrder) } style={{marginRight: '50px'}}>
-          <table className="orderForm">
+        { this.renderError(newNote) }
+        <form onSubmit={ handleSubmit(dispatchAndCreateNote) } style={{marginRight: '50px'}}>
+          <table className="noteForm">
             <tbody>
               <tr>
                 <td>
@@ -89,24 +81,10 @@ class OrdersForm extends Component {
                        component={ renderField }/>
                    </div>
                   <Field
-                     name="clinic"
+                     name="note"
                      type="text"
-                     component={ renderField }
-                     label="Clinic*" />
-                  <Field
-                     name="insurance"
-                     type="text"
-                     component={ renderField }
-                     label="Insurance*" />
-                     <div>
-                       <label htmlFor="oot">Out of Town</label>
-                       <div>
-                         <label className="switch">
-                           <Field name="oot" id="oot" component="input" type="checkbox"/>
-                           <span className="slider round"></span>
-                         </label>
-                       </div>
-                     </div>
+                     component={ renderTextArea }
+                     label="Note*" />
                 </td>
               </tr>
             </tbody>
@@ -133,12 +111,12 @@ class OrdersForm extends Component {
 
 
 // export default reduxForm({
-//   form: 'OrdersForm', // a unique identifier for this form
+//   form: 'NotesForm', // a unique identifier for this form
 //   validate, // <--- validation function given to redux-form
 //   asyncValidate
-// })(OrdersForm)
+// })(NotesForm)
 
 export default reduxForm({
-  form: 'OrdersForm',
+  form: 'NotesForm',
   validate  // <--- validation function given to redux-form
-})(OrdersForm)
+})(NotesForm)

@@ -4,6 +4,7 @@ import { reduxForm, Field, SubmissionError } from 'redux-form';
 import renderField from './renderField';
 import renderTextArea from './renderTextArea';
 import renderStateDrop from './renderStateDrop';
+import normalizePhone from './normalizePhone';
 import { validatePatientFields, validatePatientFieldsSuccess, validatePatientFieldsFailure } from '../actions/patientActions';
 import { updatePatient, updatePatientSuccess, updatePatientFailure } from '../actions/patientActions';
 
@@ -90,11 +91,11 @@ class PatientUpdateForm extends Component {
     // console.log("this.state", this.state)
     const {handleSubmit, submitting, activePatient} = this.props;
     return (
-      <div className='container'>
-        <h1>Update Patient</h1>
+      <div className='container divcon' style={{marginTop:'20px'}}>
+        <h1 className="formTit">Update Patient</h1>
         { this.renderError(activePatient) }
         <form onSubmit={ handleSubmit(dispatchAndUpdatePatient) } style={{marginRight: '50px'}}>
-          <table>
+          <table className="ptForm">
             <tbody>
               <tr>
                 <td>
@@ -111,7 +112,9 @@ class PatientUpdateForm extends Component {
                    <Field
                           name="bt_id"
                           component={ renderField }
-                          label="BT ID" />
+                          label="BT ID"
+                          normalize={normalizeZip}
+                          />
                 </td>
                 <td>
                   <Field
@@ -133,7 +136,9 @@ class PatientUpdateForm extends Component {
                   <Field
                          name="phone"
                          component={ renderField }
-                         label="Phone*" />
+                         label="Phone*"
+                         normalize={normalizePhone}
+                       />
                   <Field
                          name="address_1"
                          component={ renderField }
@@ -155,7 +160,9 @@ class PatientUpdateForm extends Component {
                   <Field
                          name="zip"
                          component={ renderField }
-                         label="Zip*" />
+                         label="Zip*"
+                         normalize={normalizeZip}
+                         />
                 </td>
               </tr>
             </tbody>

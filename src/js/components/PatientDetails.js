@@ -4,39 +4,13 @@ import { connect } from 'react-redux';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import Moment from 'react-moment';
 import PatientOrders from '../containers/PatientOrders.js';
-// import PatientUpdateForm from './PatientUpdateForm';
-// import OrdersForm from '../containers/OrdersFormContainer.js';
+import NoteTable from '../containers/NotesContainer.js';
+import NumberFormat from 'react-number-format';
 
 class PatientDetails extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
-
-  // constructor(props, context) {
-  //   super(props, context);
-  //   this.state = {
-  //     // patient: null,
-  //     isEditing: false
-  //   };
-  //   // this.updatePatientState = this.updatePatientState.bind(this);
-  //   this.toggleEdit = this.toggleEdit.bind(this);
-  // }
-
-  // componentWillReceiveProps(nextProps) {
-  //   if (this.props.activePatient.id != nextProps.activePatient.id) {
-  //     this.setState({activePatient: nextProps.activePatient});
-  //   }
-  // }
-
-  // toggleEdit() {
-  //   this.setState({isEditing: !this.state.isEditing})
-  // }
-
-  // updatePatientState(event) {
-  //   const patient = this.props;
-  //   return this.setState({patient: patient});
-  // }
-
 
   componentWillUnmount() {
     //Important! If your component is navigating based on some global state(from say componentWillReceiveProps)
@@ -49,7 +23,7 @@ class PatientDetails extends Component {
     }
 
   render() {
-    console.log("pt details", this.props)
+    // console.log("pt details", this.props)
     // console.log("pt state", this.state)
     const { patient, loading, error } = this.props.activePatient;
     if (loading) {
@@ -59,62 +33,52 @@ class PatientDetails extends Component {
     } else if(!patient) {
       return <span />
     }
-    // else if(this.state.isEditing) {
-    //   return (
-    //   <div>
-    //     <PatientUpdateForm {...this.props}
-    //       initialValues={this.props.activePatient.patient}
-    //       // onChange={this.updatePatientState}
-    //     />
-    //   </div>)
-    // }
-
-    var divStyle = {
-      padding: '15px 25px',
-      border: '1px solid #676767',
-      lineHeight: '1.8',
-    };
-
-    var fontMd = {
-      fontSize: '24px',
-    };
-
-    var inlineCol = {
-      display: 'inline-table',
-      marginRight: '20px',
-    };
 
     return (
 
       <div className="container">
-          <h1>{patient.patient_name}</h1>
-          <div class="row">
-            <div class="col-md-6" style={divStyle}>
-              <div style={fontMd}><Moment format="MM/DD/YY">{patient.created}</Moment></div>
-              <div style={inlineCol}>
-                <h1>{patient.last_name}, {patient.first_name}</h1>
-                <div>{patient.id}</div>
-                <div>{patient.phone}</div>
-                <div>{patient.address_1}<br />{patient.address_2}<br />{patient.city}, {patient.st} {patient.zip}</div>
-                <div>{patient.bt_id}</div>
-                <div>
-                  <ol>
-                    <li>{patient.ins_1}</li>
-                    <li>{patient.ins_2}</li>
-                    <li>{patient.ins_3}</li>
-                  </ol>
+          <div className="row">
+            <div className="col-md-6 modalDiv">
+              <h2 className="name">{patient.last_name}, {patient.first_name}</h2>
+              <Link
+                to={{
+                  pathname: '/patientUpdate',
+                  state: {activePatient: this.props.activePatient}
+                }}
+                className="editButton"
+              >
+                <button className="btn btn-primary btn-sm">Edit</button>
+              </Link>
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="modalInline">
+                    <div className="pt-phone">
+                      <NumberFormat value={patient.phone} displayType={'text'} format="(###) ###-####" />
+                    </div>
+                    <div className="pt-addy">{patient.address_1}<br />{patient.address_2}<br />{patient.city}, {patient.st} {patient.zip}</div>
+                    {/* <div className="pt-id">{patient.id}</div> */}
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="modalInline">
+                    <div className="pt-bt">{patient.bt_id}</div>
+                    <div className="pt-ins">
+                        {patient.ins_1}<br />
+                        {patient.ins_2}<br />
+                        {patient.ins_3}<br />
+                    </div>
+                    {/* <div className=""><Moment format="MM/DD/YY">{patient.created}</Moment></div> */}
+                  </div>
                 </div>
               </div>
-              <Link to={{
-                pathname: '/patientUpdate',
-                state: {activePatient: this.props.activePatient}
-              }}>
-                <button>edit</button>
-              </Link>
             </div>
-            <div class="col-md-8"></div>
+            <div className="col-md-6">
+              <NoteTable id={this.props.id} patient_name={this.props.activePatient.patient.last_name + ', ' + this.props.activePatient.patient.first_name} />
+            </div>
           </div>
-          <PatientOrders id={this.props.id}/>
+          <div className="row">
+            <PatientOrders id={this.props.id} patient_name={this.props.activePatient.patient.last_name + ', ' + this.props.activePatient.patient.first_name} />
+          </div>
       </div>
     );
   }

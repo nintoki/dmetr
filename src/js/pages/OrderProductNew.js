@@ -6,7 +6,7 @@ class OrderProductNew extends Component {
   render() {
     return (
       <div class="container">
-        {/* <HeaderContainer type="orders_new"/> */}
+        {/* <HeaderContainer /> */}
         <OrderProductsForm initialValues={this.props.location.state}/>
       </div>
     );

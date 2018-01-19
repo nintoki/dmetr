@@ -1,13 +1,13 @@
 import React from 'react'
 // import HeaderContainer from '../containers/HeaderContainer.js';
-import OrderTable from '../containers/OrderTableContainer'
+import OrderTableArchive from '../containers/OrderTableArchiveContainer'
 
-export default class OrdersIndex extends React.Component {
+export default class OrdersArchiveIndex extends React.Component {
   render() {
     return (
       <div>
         {/* <HeaderContainer /> */}
-        <OrderTable />
+        <OrderTableArchive />
       </div>
     )
   }

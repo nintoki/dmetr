@@ -17,7 +17,7 @@ class OrderPage extends Component {
   render() {
     return (
       <div className='container divcon'>
-        {/* <Header type="orders_show" orderId={this.props.match.params.id}/> */}
+        {/* <Header /> */}
         <OrderDetailsContainer id={this.props.match.params.id}/>
       </div>
     );

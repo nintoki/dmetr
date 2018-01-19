@@ -1,37 +1,138 @@
+@font-face {
+    font-family: FontAwesome;
+    src: url(../fonts/FontAwesome.otf) format('opentype'),
+    url(../fonts/fontawesome-webfont.ttf) format('ttf'),
+    url(../fonts/fontawesome-webfont.woff) format('woff'),
+    url(../fonts/fontawesome-webfont.woff2) format('woff2');
+}
+
 body, h1, h2, h3, h4, h5, span, p {
   font-family: Univers LT Std;
 }
+body {
+  background: #f7f7f7;
+}
+b {
+  font-weight:500;
+}
+table a:not(.btn), .table a:not(.btn) {
+    text-decoration: none;
+}
+::after, ::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 .divcon {
     margin-top: 80px;
+}
+.divcon > h1 {
+    border-bottom: 3px solid #444;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+.modalFormat {
+  background: #fff;
+  border-radius: 7px;
+  padding: 0 20px 20px;
 }
 table {
   border-collapse: collapse;
   width: 100%;
   margin-bottom: 20px;
 }
-td, tr {
+thead td, .rt-th {
+    letter-spacing: 1px;
+}
+.light {
+  font-weight: 300;
+}
+.pto {
+    margin-bottom: 20px;
+}
+.pto tr, .pto td {
   padding: 10px 15px;
   font-size: 14px;
   vertical-align: baseline;
 }
 
-thead {
+/*React Table*/
+.container .pto thead tr, .container .ReactTable .rt-thead.-header {
   font-weight: bold;
-  background: #eee;
+  background: #fff;
 }
-
-.container .ReactTable .rt-th, .container .ReactTable .rt-td {
+.container .ReactTable, .container .pto thead tr, .container .ReactTable .rt-thead.-header, .container .ReactTable .rt-thead .rt-th, .container .ReactTable .rt-thead .rt-td, .container .ReactTable .rt-tbody .rt-td, .container .ReactTable .-pagination {
+  border: none;
+}
+.container .ReactTable .rt-table {
+  overflow: initial;
+}
+.container .ReactTable.-highlight .rt-tbody .rt-tr:not(.-padRow):hover, .container .ReactTable .-pagination .-btn:not([disabled]):hover  {
+    background: #eaebec;
+    color: #111
+}
+.container .ReactTable.-striped .rt-tr.-odd, .pto tr:nth-child(odd) {
+    background: #fafbfc;
+    border-top: 1px solid #ebeff2;
+}
+.container .ReactTable.-striped .rt-tr.-even {
+    background: #fff;
+}
+.container .ReactTable .rt-thead .rt-th, .container .ReactTable .rt-td {
     padding: 10px 15px;
+    text-align: left;
 }
 .container .ReactTable .rt-th, .container .ReactTable .rt-td {
     white-space: normal;
+}
+.container .ReactTable .rt-thead.-header, .container .ReactTable .-pagination {
+    box-shadow: none;
+}
+.container .ReactTable input[type="checkbox"], .pto .opdiv input[type="checkbox"] {
+    cursor: not-allowed;
+}
+.container .ReactTable .-pagination .-btn, .btn-error,
+.btn-error {
+    background: #eaebec;
+    border: 1px solid #cacbcc
+}
+.container .ReactTable .-pagination .-btn, .btn-error:hover,
+.btn-error:focus {
+    background: #cacbcc;
+    border: 1px solid #aaabac
+}
+.container .ReactTable .-pagination {
+    margin-top: 10px
+}
+.container .ReactTable .rt-thead .rt-th.-sort-asc, .container .ReactTable .rt-thead .rt-td.-sort-asc, .container .ReactTable .rt-thead .rt-th.-sort-desc, .container .ReactTable .rt-thead .rt-td.-sort-desc {
+    box-shadow: none;
+}
+.container .ReactTable .rt-thead .rt-th.-sort-asc::after, .container .ReactTable .rt-thead .rt-td.-sort-asc::after, .container .ReactTable .rt-thead .rt-th.-sort-desc::after, .container .ReactTable .rt-thead .rt-td.-sort-desc::after {
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    color: #a5a8ac
+}
+.container .ReactTable .rt-thead .rt-th.-sort-asc::after, .container .ReactTable .rt-thead .rt-td.-sort-asc::after {
+    content: '';
+}
+.container .ReactTable .rt-thead .rt-th.-sort-desc::after, .container .ReactTable .rt-thead .rt-td.-sort-desc::after {
+    content: '';
+}
+
+.op1 + .op2 {
+    margin-top: 10px;
+}
+.optit {
+    margin-bottom: 4px;
 }
 /* Checkboxes */
 .opcon {
     border: 1px solid #ccc;
     padding: 10px 20px;
+    border-radius: 3px;
 }
-
 .opdiv:first-child {
     margin-left: 0;
 }
@@ -56,11 +157,6 @@ thead {
     margin: auto auto;
 }
 
-::after, ::before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
 .opdiv label {
   margin-bottom: 0;
 }
@@ -68,18 +164,15 @@ td .opdiv input[type="checkbox"] + label::after, .opdiv input[type="checkbox"] +
     font-size: 16px;
     height: 25px;
     width: 25px;
-    margin-left: -21px;
+    margin-left: -25px;
 }
 td .opdiv input[type="checkbox"]:checked + label::after, .opdiv input[type="checkbox"]:checked + label::after {
     color: #ffffff;
-    content: "\f00c";
+    content: "";
     font-family: 'FontAwesome';
     line-height: 1.6;
-    position: relative;
-    vertical-align: top;
-    text-align: center;
+    position: absolute;
 }
-
 td .opdiv input[type="checkbox"] + label::before, .opdiv input[type="checkbox"] + label::before {
     height: 25px;
     width: 25px;
@@ -93,7 +186,6 @@ td .opdiv input[type="checkbox"] + label::before, .opdiv input[type="checkbox"] 
     -webkit-transition: 0.3s ease-in-out;
     transition: 0.3s ease-in-out;
 }
-
 td .op1 .opdiv input[type="checkbox"]:checked + label::before, .op1 .opdiv input[type="checkbox"]:checked + label::before {
     background-color: #3fb618;
     border-color: #3fb618;
@@ -103,9 +195,120 @@ td .op2 .opdiv input[type="checkbox"]:checked + label::before, .op2 .opdiv input
     border-color: #2780e3;
 }
 
-.op1, .op2 {
-  min-width: 255px;
+.modalDiv h2::before, .modalDiv h2.order::before, .container .ReactTable .rt-thead .rt-th.-sort-asc::after, .container .ReactTable .rt-thead .rt-td.-sort-asc::after, .container .ReactTable .rt-thead .rt-th.-sort-desc::after, .container .ReactTable .rt-thead .rt-td.-sort-desc::after, .editButton > .btn::after, .editButton.optab::after, .viewButton::after, .addButton::before, .plusButton::before, .backButton::before {
+  font-family: FontAwesome;
 }
+
+/*Patient Page*/
+.modalDiv {
+    line-height: 1.6;
+    padding: 0 20px 0 19px;
+    border-radius: 3px;
+    background: #fff;
+}
+.modalDiv h2 {
+    margin: 0;
+    padding: 20px 0;
+    border-bottom: 3px solid #444;
+}
+.modalDiv h2::before {
+    margin: 0px 15px 0px 5px;
+    font-size: 40px;
+    line-height: 28px;
+    color: #676767;
+}
+.modalDiv h2.name::before {
+    content: '';
+}
+/* .modalDiv h2.order::before {
+    content: '';
+} */
+.modalDiv .row {
+    padding: 20px 0;
+}
+.modalInline {
+    display: inline-table;
+    margin-right: 20px;
+    padding-left: 30px;
+}
+.editButton, .addButton, .addButtonsm {
+    position: absolute;
+    top: 23px;
+    right: 20px;
+    display: inline-block;
+}
+.addButton {
+    top: 15px
+}
+.addButton::before, .plusButton::before {
+    content:'';
+    margin-right:10px
+}
+.editButton.optab {
+    position: relative;
+    top: initial;
+    right: initial;
+    display: initial;
+}
+.editButton > .btn::after, .editButton.optab::after {
+    content: '';
+    margin-left: 10px;
+}
+
+.viewButton::after {
+    content: '';
+    margin-left: 10px;
+}
+.backButton::before {
+  content: '';
+  margin-right:10px;
+}
+.pt-phone::before, .pt-addy::before, .pt-id::before, .pt-bt::before, .pt-ins::before, .order-pt::before, .order-dt::before, .order-cl::before, .order-ins::before {
+    font-family: FontAwesome;
+    position: absolute;
+    margin-left: -25px;
+    font-size: 18px;
+    line-height: 1.3;
+    color: #676767;
+}
+.pt-phone, .pt-bt, .order-pt {
+  font-size: 18px;
+  line-height: 1.4;
+}
+.pt-phone::before {
+  content:'';
+}
+.pt-addy, .p-addy {
+  text-transform: capitalize;
+}
+.pt-addy::before {
+  content: '';
+}
+.pt-id::before {
+
+}
+.pt-bt::before {
+  content: '';
+}
+.pt-ins::before {
+  content: '';
+}
+.order-pt::before {
+  content: '';
+}
+.order-dt::before {
+  content: '';
+}
+.order-cl::before {
+  content: '';
+}
+.order-ins::before {
+  content: '';
+}
+.pt-addy, .pt-ins, .order-dt, .order-cl {
+    margin-top: 10px;
+}
+
 
 /* Conditionals */
 .oot::after {
@@ -122,26 +325,66 @@ td .op2 .opdiv input[type="checkbox"]:checked + label::before, .op2 .opdiv input
     margin-left: 5px;
     font-size: 16px;
 }
-
-.pto {
-    margin-bottom: 0;
-}
-
-.pto tr:nth-child(even) {
-  background: #fafafa;
+.archived {
+  filter: grayscale(100%);
 }
 
 .btn {
-  margin-right: 15px;
+  border-radius: 3px;
+}
+.btn + .btn {
+  margin-left: 15px;
 }
 
-.btn-error:hover,
-.btn-error:focus {
-  background: #ccc;
+
+/*Forms*/
+.orderForm, .ptForm, .noteForm, .formTit {
+    max-width: 640px;
+    margin-top: 40px;
 }
 
+.productForm tr td:first-child {
+  padding-right: 20px;
+  width: 40%
+}
 
+/*Patient Form*/
+.ptForm td:nth-child(1) {
+    padding-right: 12px;
+}
+.ptForm td:nth-child(2) {
+    padding-left: 12px;
+}
 
+.orderCheck {
+    margin-top: 20px;
+}
+.orderCheck > div {
+    display: inline-block;
+    text-align: center;
+    min-width: 22.25%;
+    margin-right: 3.5%;
+    padding: 5px 10px 2px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+.orderCheck > div:last-child {
+    margin-right: 0;
+}
+
+label {
+    font-weight: 300;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.op1, .op2 {
+  min-width: 265px;
+}
+.productForm .op1, .productForm .op2 {
+  display: inline-block;
+}
 
 form ul {
     list-style: none;
@@ -212,6 +455,103 @@ footer {
   position: inherit;
 }
 
+/*Switch*/
+/* The switch - the box around the slider */
+.switch {
+ position: relative;
+ display: inline-block;
+ width: 60px;
+ height: 34px;
+}
+.switch.sm {
+ width: 30px;
+ height: 17px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+ position: absolute;
+ cursor: pointer;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background-color: #ccc;
+ -webkit-transition: .4s;
+ transition: .4s;
+}
+
+.slider:before {
+ position: absolute;
+ content: "";
+ height: 26px;
+ width: 26px;
+ left: 4px;
+ bottom: 4px;
+ background-color: white;
+ -webkit-transition: .4s;
+ transition: .4s;
+}
+.slider.sm:before {
+ height: 13px;
+ width: 13px;
+ left: 2px;
+ bottom: 2px;
+}
+
+input:checked + .slider {
+ background-color: #2780e3;
+}
+input:focus + .slider {
+ box-shadow: 0 0 1px #2780e3;
+}
+input:checked + .slider.red {
+ background-color: #c9302c;
+}
+input:focus + .slider.red {
+ box-shadow: 0 0 1px #c9302c;
+}
+input:checked + .slider.green {
+ background-color: #3fb618;
+}
+input:focus + .slider.green {
+ box-shadow: 0 0 1px #3fb618;
+}
+
+input:checked + .slider:before {
+ -webkit-transform: translateX(26px);
+ -ms-transform: translateX(26px);
+ transform: translateX(26px);
+}
+input:checked + .slider.sm:before {
+ -webkit-transform: translateX(13px);
+ -ms-transform: translateX(13px);
+ transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+ border-radius: 34px;
+}
+.slider.round.sm {
+ border-radius: 17px;
+}
+
+.slider.round:before {
+ border-radius: 50%;
+}
+.red {
+  color: #c9302c;
+}
+.blue {
+  color: #2780e3;
+}
+.green {
+  color: #3fb618;
+}
 @media (min-width: 1200px) {
   .container {
       width: 1280px;

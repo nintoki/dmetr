@@ -28,6 +28,11 @@ class Header extends Component {
       alert(nextProps.deletedOrderProduct.error.message || 'Could not delete order product. Please try again.');
     } else if(nextProps.deletedOrderProduct.order_product && !nextProps.deletedOrderProduct.error) {//delete success
       this.context.router.history.goBack();
+    };
+    if(nextProps.deletedNote.error && nextProps.deletedNote.error.message) {//delete failure
+      alert(nextProps.deletedNote.error.message || 'Could not delete note. Please try again.');
+    } else if(nextProps.deletedNote.note && !nextProps.deletedNote.error) {//delete success
+      this.context.router.history.goBack();
     }
     // else if(this.props.user.user && !nextProps.user.user) {//logout (had user(this.props.user.user) but no loger the case (!nextProps.user.user))
     //   this.context.router.push('/');
@@ -105,10 +110,10 @@ class Header extends Component {
       			<li style={{paddingRight: '10px'}} style={{color:'#337ab7',  fontSize: '17px'}}  role="presentation"><Link to="/">Back To Index</Link></li>
     			</ul> */}
           <button
-            className="btn btn-error"
+            className="btn btn-error backButton"
             onClick={this.context.router.history.goBack}
             >
-              &#8592; Back
+              Back
           </button>
       			<button className="btn btn-warning pull-xs-right"  onClick={()=> {if(confirm('Delete Patient?')) {this.props.onDeletePatientClick()};}}>Delete Patient</button>
            {/* {this.renderSignInLinks(authenticatedUser)} */}
@@ -116,17 +121,17 @@ class Header extends Component {
   		);
   	}
     else if(type === 'orders_show') {
-      console.log("header", this.props)
+      // console.log("header", this.props)
   			return (
   			 <div className="container">
     			{/* <ul className="nav nav-pills navbar-left">
       			<li style={{paddingRight: '10px'}} style={{color:'#337ab7',  fontSize: '17px'}}  role="presentation"><Link to="/">Back To Index</Link></li>
     			</ul> */}
           <button
-            className="btn btn-error"
+            className="btn btn-error backButton"
             onClick={this.context.router.history.goBack}
             >
-              &#8592; Back
+              Back
           </button>
       			<button className="btn btn-warning pull-xs-right"  onClick={()=> {if(confirm('Delete Order?')) {this.props.onDeleteOrderClick()};}}>Delete Order</button>
            {/* {this.renderSignInLinks(authenticatedUser)} */}
@@ -141,13 +146,43 @@ class Header extends Component {
       			<li style={{paddingRight: '10px'}} style={{color:'#337ab7',  fontSize: '17px'}}  role="presentation"><Link to="/">Back To Index</Link></li>
     			</ul> */}
           <button
-            className="btn btn-error"
+            className="btn btn-error backButton"
             onClick={this.context.router.history.goBack}
             >
-              &#8592; Back
+              Back
           </button>
       			<button className="btn btn-warning pull-xs-right"  onClick={()=> {if(confirm('Delete Order Product?')) {this.props.onDeleteOrderProductClick()};}}>Delete Order Product</button>
            {/* {this.renderSignInLinks(authenticatedUser)} */}
+    	   </div>
+  		);
+  	}
+    else if(type === 'notes_show') {
+      console.log("header", this.props)
+  			return (
+  			 <div className="container">
+    			{/* <ul className="nav nav-pills navbar-left">
+      			<li style={{paddingRight: '10px'}} style={{color:'#337ab7',  fontSize: '17px'}}  role="presentation"><Link to="/">Back To Index</Link></li>
+    			</ul> */}
+          <button
+            className="btn btn-error backButton"
+            onClick={this.context.router.history.goBack}
+            >
+              Back
+          </button>
+      			<button className="btn btn-warning pull-xs-right"  onClick={()=> {if(confirm('Delete Note?')) {this.props.onDeleteNoteClick()};}}>Delete Note</button>
+           {/* {this.renderSignInLinks(authenticatedUser)} */}
+    	   </div>
+  		);
+  	}
+    else {
+  			return (
+  			 <div className="container">
+          <button
+            className="btn btn-error backButton"
+            onClick={this.context.router.history.goBack}
+            >
+              Back
+          </button>
     	   </div>
   		);
   	}

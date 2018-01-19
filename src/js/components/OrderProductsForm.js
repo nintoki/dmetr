@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { reduxForm, Field, FieldArray, SubmissionError } from 'redux-form';
 import renderField from './renderField';
+import renderTextArea from './renderTextArea';
 import renderProductDrop from './renderProductDrop';
 import moment from 'moment';
 import Moment from 'react-moment';
@@ -80,83 +81,97 @@ class OrderProductsForm extends React.Component {
 
     return (
       <div className='container divcon'>
-        <h1>New Order Product</h1>
-        {/* <Moment format="YYYY-MM-DD HH:mm:ss">{dt}</Moment> */}
+        <h1>New Product</h1>
+        <h4><b>Order:</b> #{this.props.initialValues.order_id}</h4>
         { this.renderError(newOrderProduct) }
         <form onSubmit={ handleSubmit(dispatchAndCreateOrderProduct) } style={{marginRight: '50px'}}>
-          <table>
+          <table className="productForm">
             <tbody>
               <tr>
                 <td>
                   <Field
                      name="product_id"
                      component={ renderProductDrop }
-                     data={productsOptions}
+                     data={ productsOptions }
                      label="Product*" />
                   <Field
                      name="description"
                      type="text"
-                     component={ renderField }
-                     label="description*" />
-                  <Field
-                     name="product_id"
-                     type="text"
-                     component={ renderField } />
-                  <Field
-                      name="order_id"
-                      type="hidden"
-                      component={ renderField } />
-                   <div>
-                     <label htmlFor="rush">Rush</label>
+                     component={ renderTextArea }
+                     label="Description*" />
+                   <div className="orderCheck">
                      <div>
-                       <Field name="rush" id="rush" component="input" type="checkbox"/>
+                       <label htmlFor="rush">Rush</label>
+                       <div>
+                         <label className="switch">
+                           <Field name="rush" id="rush" component="input" type="checkbox"/>
+                           <span className="slider red round"></span>
+                         </label>
+                       </div>
                      </div>
-                   </div>
-                   <div>
-                     <label htmlFor="exchange">Exchange</label>
                      <div>
-                       <Field name="exchange" id="exchange" component="input" type="checkbox"/>
+                       <label htmlFor="exchange">Exchange</label>
+                       <div>
+                         <label className="switch">
+                           <Field name="exchange" id="exchange" component="input" type="checkbox"/>
+                           <span className="slider round"></span>
+                         </label>
+                       </div>
                      </div>
-                   </div>
-                   <div>
-                     <label htmlFor="rtn">Return</label>
                      <div>
-                       <Field name="rtn" id="rtn" component="input" type="checkbox"/>
+                       <label htmlFor="rtn">Return</label>
+                       <div>
+                         <label className="switch">
+                           <Field name="rtn" id="rtn" component="input" type="checkbox"/>
+                           <span className="slider round"></span>
+                         </label>
+                       </div>
                      </div>
-                   </div>
-                   <div>
-                     <label htmlFor="status">Status</label>
-                     <div>
-                       <Field name="status" id="status" component="input" type="checkbox"/>
+                     <div style={{background: '#ddd'}}>
+                       <label htmlFor="status">Archive</label>
+                       <div>
+                         <label className="switch">
+                           <Field name="status" id="status" component="input" type="checkbox"/>
+                           <span className="slider green round"></span>
+                         </label>
+                       </div>
                      </div>
                    </div>
                 </td>
-                <td>
-                  <div class="op1 opcon">
-                    <h4>Order Phase 1</h4>
-                    <div>
-                      <div class="opdiv">
-                        <Field name="op1_1" id="op1_1" ref="checkbox" component="input" type="checkbox" onClick={() => {this.props.change('op1_1_dt', dt)}}/>
+                <td style={{verticalAlign:'baseline'}}>
+                  <div className="op1">
+                    <label>Order Phase 1</label>
+                    <div className="opcon">
+                      <div className="opdiv">
+                        <div class="optit">Ins</div>
+                          <Field name="op1_1" id="op1_1" component="input" type="checkbox" onClick={() => {this.props.change('op1_1_dt', dt)}}/>
                         <label htmlFor="op1_1" />
                         <div>—</div>
                       </div>
-                      <div class="opdiv">
-                        <Field name="op1_2" id="op1_2" ref="checkbox" component="input" type="checkbox" onClick={() => {this.props.change('op1_2_dt', dt)}}/>
+                      <div className="opdiv">
+                        <div class="optit">Meas</div>
+                          <Field name="op1_2" id="op1_2" component="input" type="checkbox" onClick={() => {this.props.change('op1_2_dt', dt)}}/>
                         <label htmlFor="op1_2" />
                         <div>—</div>
+
                       </div>
-                      <div class="opdiv">
-                        <Field name="op1_3" id="op1_3" ref="checkbox" component="input" type="checkbox" onClick={() => {this.props.change('op1_3_dt', dt)}}/>
+                      <div className="opdiv">
+                        <div class="optit">Rx</div>
+                          <Field name="op1_3" id="op1_3" component="input" type="checkbox" onClick={() => {this.props.change('op1_3_dt', dt)}}/>
                         <label htmlFor="op1_3" />
                         <div>—</div>
+
                       </div>
-                      <div class="opdiv">
-                        <Field name="op1_4" id="op1_4" ref="checkbox" component="input" type="checkbox" onClick={() => {this.props.change('op1_4_dt', dt)}}/>
+                      <div className="opdiv">
+                        <div class="optit">Note</div>
+                          <Field name="op1_4" id="op1_4" component="input" type="checkbox" onClick={() => {this.props.change('op1_4_dt', dt)}}/>
                         <label htmlFor="op1_4" />
                         <div>—</div>
+
                       </div>
-                      <div class="opdiv">
-                        <Field name="op1_5" id="op1_5" ref="checkbox" component="input" type="checkbox" onClick={() => {this.props.change('op1_5_dt', dt)}}/>
+                      <div className="opdiv">
+                        <div class="optit">Auth</div>
+                          <Field name="op1_5" id="op1_5" component="input" type="checkbox" onClick={() => {this.props.change('op1_5_dt', dt)}}/>
                         <label htmlFor="op1_5" />
                         <div>—</div>
                       </div>
@@ -184,21 +199,24 @@ class OrderProductsForm extends React.Component {
                       type="hidden"
                       component={ renderField } />
                   </div>
-                  <div class="op2 opcon">
-                    <h4>Order Phase 2</h4>
-                    <div>
-                      <div class="opdiv">
-                        <Field name="op2_1" id="op2_1" ref="checkbox" component="input" type="checkbox" onClick={() => {this.props.change('op2_1_dt', dt)}}/>
+                  <div className="op2">
+                    <label>Order Phase 2</label>
+                    <div className="opcon">
+                      <div className="opdiv">
+                        <div class="optit">Ordr</div>
+                          <Field name="op2_1" id="op2_1" component="input" type="checkbox" onClick={() => {this.props.change('op2_1_dt', dt)}}/>
                         <label htmlFor="op2_1" />
                         <div>—</div>
                       </div>
-                      <div class="opdiv">
-                        <Field name="op2_2" id="op2_2" ref="checkbox" component="input" type="checkbox" onClick={() => {this.props.change('op2_2_dt', dt)}}/>
+                      <div className="opdiv">
+                        <div class="optit">Rcvd</div>
+                          <Field name="op2_2" id="op2_2" component="input" type="checkbox" onClick={() => {this.props.change('op2_2_dt', dt)}}/>
                         <label htmlFor="op2_2" />
                         <div>—</div>
                       </div>
-                      <div class="opdiv">
-                        <Field name="op2_3" id="op2_3" ref="checkbox" component="input" type="checkbox" onClick={() => {this.props.change('op2_3_dt', dt)}}/>
+                      <div className="opdiv">
+                        <div class="optit">Bill</div>
+                          <Field name="op2_3" id="op2_3" component="input" type="checkbox" onClick={() => {this.props.change('op2_3_dt', dt)}}/>
                         <label htmlFor="op2_3" />
                         <div>—</div>
                       </div>
@@ -215,6 +233,14 @@ class OrderProductsForm extends React.Component {
                       component={ renderField } />
                     <Field
                       name="op2_3_dt"
+                      type="hidden"
+                      component={ renderField } />
+                    <Field
+                      name="id"
+                      type="hidden"
+                      component={ renderField } />
+                    <Field
+                      name="order_id"
                       type="hidden"
                       component={ renderField } />
                   </div>

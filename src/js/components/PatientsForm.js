@@ -3,6 +3,8 @@ import { Link, push } from 'react-router-dom';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import renderField from './renderField';
 import renderStateDrop from './renderStateDrop';
+import normalizePhone from './normalizePhone';
+import normalizeZip from './normalizeZip';
 import { validatePatientFields, validatePatientFieldsSuccess, validatePatientFieldsFailure } from '../actions/patientActions';
 import { createPatient, createPatientSuccess, createPatientFailure, resetNewPatient } from '../actions/patientActions';
 
@@ -16,8 +18,8 @@ function validate(values) {
   if (!values.last_name || values.last_name.trim() === '') {
     errors.last_name = 'Enter last name';
   }
-  if (!values.phone || values.phone.trim() === '') {
-    errors.phone = 'Enter a phone number';
+  if (!values.phone || values.phone.trim() === '' || values.phone.length != 10) {
+    errors.phone = 'Enter a valid phone number';
   }
   if (!values.address_1 || values.address_1.trim() === '') {
     errors.address_1 = 'Enter a address';
@@ -28,8 +30,8 @@ function validate(values) {
   if (!values.st || values.st.trim() === '') {
     errors.st = 'Choose a state';
   }
-  if (!values.zip || values.zip.trim() === '') {
-    errors.zip = 'Enter a zip';
+  if (!values.zip || values.zip.trim() === '' || values.zip.length != 5) {
+    errors.zip = 'Enter a valid zip';
   }
   if (!values.ins_1 || values.ins_1.trim() === '') {
     errors.ins_1 = 'Enter an insurance';
@@ -37,29 +39,6 @@ function validate(values) {
 
   return errors;
 }
-
-// //For instant async server validation
-// const asyncValidate = (values, dispatch) => {
-//   return dispatch(validatePatientFields(values))
-//     .then((result) => {
-//       //Note: Error's "data" is in result.payload.response.data
-//       // success's "data" is in result.payload.data
-//       if (!result.payload.response) { //1st onblur
-//         return;
-//       }
-
-//       let {data, status} = result.payload.response;
-//       //if status is not 200 or any one of the fields exist, then there is a field error
-//       if (response.payload.status != 200 || data.title || data.categories || data.description) {
-//         //let other components know of error by updating the redux` state
-//         dispatch(validatePatientFieldsFailure(data));
-//         throw data; //throw error
-//       } else {
-//         //let other components know that everything is fine by updating the redux` state
-//         dispatch(validatePatientFieldsSuccess(data)); //ps: this is same as dispatching RESET_USER_FIELDS
-//       }
-//     });
-// };
 
 // //For any field errors upon submission (i.e. not instant check)
 // const validateAndCreatePatient = (values, dispatch) => {
@@ -80,19 +59,16 @@ function validate(values) {
 const dispatchAndCreatePatient = (values, dispatch) => {
   return dispatch(createPatient(values))
     .then(result => {
-      // console.log("values", values);
-      // let firstName = values.first_name;
-      // let lastName = values.last_name;
-      // let name = firstName + ' ' + lastName;
       // Note: Error's "data" is in result.payload.response.data (inside "response")
       // success's "data" is in result.payload.data
       if (result.payload.response && result.payload.response.status !== 200) {
         dispatch(createPatientFailure(result.payload.response.data));
         throw new SubmissionError(result.payload.response.data);
       }
-      window.alert(`Success! : \n\n${JSON.stringify(values, null, 2)}`);
+      // window.alert(`Success! : \n\n${JSON.stringify(values, null, 2)}`);
       //let other components know that everything is fine by updating the redux` state
       dispatch(createPatientSuccess(result.payload.data)); //ps: this is same as dispatching RESET_USER_FIELDS
+      window.alert(result.payload.data.message);
 			history.back()
     });
 }
@@ -130,11 +106,11 @@ class PatientsForm extends Component {
   render() {
     const {handleSubmit, submitting, newPatient} = this.props;
     return (
-      <div className='container divcon'>
-        <h1>New Patient</h1>
+      <div className='container divcon' style={{marginTop:'20px'}}>
+        <h1 className="formTit">New Patient</h1>
         { this.renderError(newPatient) }
         <form onSubmit={ handleSubmit(dispatchAndCreatePatient) } style={{marginRight: '50px'}}>
-          <table>
+          <table className="ptForm">
             <tbody>
               <tr>
                 <td>
@@ -151,7 +127,9 @@ class PatientsForm extends Component {
                    <Field
                           name="bt_id"
                           component={ renderField }
-                          label="BT ID" />
+                          label="BT ID"
+                          normalize={normalizeZip}
+                          />
                 </td>
                 <td>
                   <Field
@@ -173,7 +151,9 @@ class PatientsForm extends Component {
                   <Field
                          name="phone"
                          component={ renderField }
-                         label="Phone*" />
+                         label="Phone*"
+                         normalize={normalizePhone}
+                          />
                   <Field
                          name="address_1"
                          component={ renderField }
@@ -195,7 +175,9 @@ class PatientsForm extends Component {
                   <Field
                          name="zip"
                          component={ renderField }
-                         label="Zip*" />
+                         label="Zip*"
+                         normalize={normalizeZip}
+                        />
                 </td>
               </tr>
             </tbody>

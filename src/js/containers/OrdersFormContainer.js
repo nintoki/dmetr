@@ -12,10 +12,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-function mapStateToProps(state, patient_id) {
+function mapStateToProps(state) {
+  // console.log("state", state)
   return {
-    newOrder: state.orders.newOrder,
-    patient_id: state.patient_id
+    newOrder: state.orders.newOrder
+    // patient_id: state.patient_id
   };
 }
 

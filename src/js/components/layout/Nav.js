@@ -8,9 +8,12 @@ import PatientSearch from "../../pages/PatientSearch"
 import PatientNew from "../../pages/PatientNew"
 import PatientUpdate from "../../pages/PatientUpdate"
 import OrdersIndex from "../../pages/OrdersIndex"
+import OrdersArchiveIndex from "../../pages/OrdersArchiveIndex"
 import OrderPage from "../../pages/OrderPage"
 import OrderNew from "../../pages/OrderNew"
 import OrderUpdate from "../../pages/OrderUpdate"
+import NoteNew from "../../pages/NoteNew"
+import NoteUpdate from "../../pages/NoteUpdate"
 import OrderProductPage from "../../pages/OrderProductPage"
 import OrderProductNew from "../../pages/OrderProductNew"
 import OrderProductUpdate from "../../pages/OrderProductUpdate"
@@ -59,7 +62,7 @@ export default class Nav extends React.Component {
                   <Link to="/orders" onClick={this.toggleCollapse.bind(this)}>Orders</Link>
                 </li>
                 <li>
-                  <Link to="/patients" onClick={this.toggleCollapse.bind(this)}>Patients</Link>
+                  <Link to="/ordersArchive" onClick={this.toggleCollapse.bind(this)}>Archive</Link>
                 </li>
               </ul>
             </div>
@@ -68,16 +71,18 @@ export default class Nav extends React.Component {
 
         <Switch>
           <Route exact path="/" component={SearchStart} />
-          {/* <Route path="/searchStart" component={SearchStart}/> */}
           <Route path="/search" component={PatientSearch} />
           <Route path="/patients" component={PatientsIndex}/>
           <Route path="/patient/:id" component={PatientPage}/>
           <Route path="/patientNew" component={PatientNew} />
           <Route path="/patientUpdate" component={PatientUpdate} />
           <Route path="/orders" component={OrdersIndex}/>
+          <Route path="/ordersArchive" component={OrdersArchiveIndex}/>
           <Route path="/order/:id" component={OrderPage}/>
-          <Route path="/orderNew" component={OrderNew} />
+          <Route path="/orderNew/:patient_name" component={OrderNew} />
           <Route path="/orderUpdate" component={OrderUpdate} />
+          <Route path="/noteNew/:patient_name" component={NoteNew} />
+          <Route path="/noteUpdate" component={NoteUpdate} />
           <Route path="/orderProductNew" component={OrderProductNew} />
           <Route path="/orderProduct/:id" component={OrderProductPage} />
           <Route path="/orderProductUpdate" component={OrderProductUpdate} />
