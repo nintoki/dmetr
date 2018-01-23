@@ -17,7 +17,7 @@ class Header extends Component {
     if(nextProps.deletedPatient.error && nextProps.deletedPatient.error.message) {//delete failure
       alert(nextProps.deletedPatient.error.message || 'Could not delete patient. Please try again.');
     } else if(nextProps.deletedPatient.patient && !nextProps.deletedPatient.error) {//delete success
-      this.context.router.history.push('/patients');
+      this.context.router.history.push('/');
     };
     if(nextProps.deletedOrder.error && nextProps.deletedOrder.error.message) {//delete failure
       alert(nextProps.deletedOrder.error.message || 'Could not delete order. Please try again.');

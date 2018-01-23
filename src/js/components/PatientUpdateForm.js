@@ -5,6 +5,7 @@ import renderField from './renderField';
 import renderTextArea from './renderTextArea';
 import renderStateDrop from './renderStateDrop';
 import normalizePhone from './normalizePhone';
+import normalizeZip from './normalizeZip';
 import { validatePatientFields, validatePatientFieldsSuccess, validatePatientFieldsFailure } from '../actions/patientActions';
 import { updatePatient, updatePatientSuccess, updatePatientFailure } from '../actions/patientActions';
 

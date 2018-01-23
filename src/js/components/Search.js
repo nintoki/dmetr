@@ -43,7 +43,7 @@ export default class Search extends Component {
 						<Link
 							id="searchBtn"
 							className="btn btn-primary"
-							style={{display:'inline-block', height:'45px'}}
+							style={{display:'inline-block', height:'45px', borderRadius:'0 3px 3px 0', verticalAlign:'bottom'}}
 							to={{
 								pathname: '/search',
 								state: {searchTerm: this.state.searchTerm}

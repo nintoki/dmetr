@@ -72,9 +72,7 @@ class PatientDetails extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-md-6">
-              <NoteTable id={this.props.id} patient_name={this.props.activePatient.patient.last_name + ', ' + this.props.activePatient.patient.first_name} />
-            </div>
+            <NoteTable id={this.props.id} patient_name={this.props.activePatient.patient.last_name + ', ' + this.props.activePatient.patient.first_name} />
           </div>
           <div className="row">
             <PatientOrders id={this.props.id} patient_name={this.props.activePatient.patient.last_name + ', ' + this.props.activePatient.patient.first_name} />

@@ -16,14 +16,14 @@ class OrderProductTable extends Component {
       return (
         <tr key={order_products.id} className={ order_products.status == 1 ? "archived" : "" }>
           <td className={ order_products.rush == 1 ? "rush" : "" }>
-            {order_products.short_desc} - <span className="light">{order_products.description}</span>
+            {order_products.code} - {order_products.short_desc} <br /> <span className="light">{order_products.description}</span>
             <br />
             { order_products.exchange == 1 ? <span className="badge badge-info">exchanged </span> : "" }
             { order_products.rtn == 1 ? <span className="badge badge-warning">returned</span> : "" }
           </td>
           <td>
             <div className={ order_products.status == 1 ? "hidden" : "" }>
-              <div className="op1">
+              <div className={ (order_products.op1_1 == 1 && order_products.op1_2 == 1 && order_products.op1_3 == 1 && order_products.op1_4 == 1 && order_products.op1_5 == 1 ) ? "hidden" : "op1" }>
                 <div className="opdiv">
                   <div className="optit">Ins</div>
                   <div>
@@ -105,7 +105,7 @@ class OrderProductTable extends Component {
                   </div>
                 </div>
               </div>
-              <div className="op2">
+              <div className={ (order_products.op1_1 == 1 && order_products.op1_2 == 1 && order_products.op1_3 == 1 && order_products.op1_4 == 1 && order_products.op1_5 == 1 ) ? "op2" : "hidden" }>
                 <div className="opdiv">
                   <div className="optit">Ordr</div>
                   <div>

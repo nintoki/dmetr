@@ -65,7 +65,7 @@ class OrderTable extends Component {
               width: 300,
               Cell: row => (
                 <div style={{width: '100%', height: '100%'}}>
-                  {row.original.short_desc} - <span className="light">{row.value}</span>
+                  {row.original.code} - {row.original.short_desc} <br /> <span className="light">{row.value}</span>
                   <br />
                   { row.original.exchange == 1 ? <span className="badge badge-info">exchanged </span> : "" }
                   { row.original.rtn == 1 ? <span className="badge badge-warning">returned</span> : "" }

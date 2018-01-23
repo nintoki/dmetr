@@ -1,9 +1,26 @@
 @font-face {
-    font-family: FontAwesome;
+    font-family: 'FontAwesome';
     src: url(../fonts/FontAwesome.otf) format('opentype'),
     url(../fonts/fontawesome-webfont.ttf) format('ttf'),
+    url(../fonts/fontawesome-webfont.svg) format('svg'),
     url(../fonts/fontawesome-webfont.woff) format('woff'),
     url(../fonts/fontawesome-webfont.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url(../fonts/glyphicons-halflings-regular.ttf) format('ttf'),
+    url(../fonts/glyphicons-halflings-regular.svg) format('svg'),
+    url(../fonts/glyphicons-halflings-regular.eot) format('eot'),
+    url(../fonts/glyphicons-halflings-regular.woff) format('woff'),
+    url(../fonts/glyphicons-halflings-regular.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'RwWidgets';
+    src: url(../fonts/rw-widgets.ttf) format('ttf'),
+    url(../fonts/rw-widgets.svg) format('svg'),
+    url(../fonts/rw-widgets.eot) format('eot'),
+    url(../fonts/rw-widgets.woff) format('woff'),
+    url(../fonts/rw-widgets.woff2) format('woff2');
 }
 
 body, h1, h2, h3, h4, h5, span, p {
@@ -17,6 +34,10 @@ b {
 }
 table a:not(.btn), .table a:not(.btn) {
     text-decoration: none;
+}
+.col-md-6.modalDiv + .col-md-6.modalDiv {
+    width: calc(50% - 20px);
+    margin-left: 20px;
 }
 ::after, ::before {
   -webkit-box-sizing: border-box;
@@ -238,7 +259,7 @@ td .op2 .opdiv input[type="checkbox"]:checked + label::before, .op2 .opdiv input
     display: inline-block;
 }
 .addButton {
-    top: 15px
+    top: 16px
 }
 .addButton::before, .plusButton::before {
     content:'';

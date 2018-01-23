@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Moment from 'react-moment'
-import OrderProductTable from '../containers/PatientOrderProducts'
+import Moment from 'react-moment';
+// import 'moment-timezone';
+import OrderProductTable from '../containers/PatientOrderProducts';
 
 class OrderDetails extends Component {
   static contextTypes = {

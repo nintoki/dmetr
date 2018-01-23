@@ -56,7 +56,7 @@ class NoteTable extends Component {
 
     return (
       !notes.length
-          ? <div className="col-md-12 modalDiv">
+          ? <div className="col-md-6 modalDiv">
               <h3 style={{marginBottom:'0'}}>No notes found.</h3>
               <div className="row" style={{marginLeft:'10px'}}>
                 <Link
@@ -72,7 +72,7 @@ class NoteTable extends Component {
               </div>
             </div>
           :
-      <div className="col-md-12 modalDiv">
+      <div className="col-md-6 modalDiv">
             <h2>Notes</h2>
             <Link
               to={{
@@ -81,7 +81,7 @@ class NoteTable extends Component {
               }}
               className="addButtonsm"
             >
-              <button className="btn btn-success btn-sm addButton">
+              <button className="btn btn-success btn-sm plusButton">
                 New Note
               </button>
             </Link>

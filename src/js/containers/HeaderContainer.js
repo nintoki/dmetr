@@ -76,7 +76,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       // }
 
     	// dispatch(deleteNote(ownProps.orderProductId, token))
-    	dispatch(deleteNote(ownProps.orderProductId))
+    	dispatch(deleteNote(ownProps.noteId))
       	.then((response) => {
             !response.error ? dispatch(deleteNoteSuccess(response.payload)) : dispatch(deleteNoteFailure(response.payload));
             alert(response.payload.data.message);

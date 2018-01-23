@@ -9,7 +9,10 @@ module.exports = {
   module: {
     loaders: [
       {
-        // include: /\.json$/, loaders: ["json-loader"],
+        test: /\.json$/,
+        loader: 'json-loader'
+      },
+      {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
@@ -17,6 +20,19 @@ module.exports = {
           presets: ['react', 'es2015', 'stage-0'],
           plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
         }
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        loader: 'css-loader'
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "url-loader?limit=10000&mimetype=application/font-woff"
+      },
+      {
+        test: /\.(gif|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "file-loader"
       }
     ]
   },

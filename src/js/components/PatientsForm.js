@@ -18,7 +18,7 @@ function validate(values) {
   if (!values.last_name || values.last_name.trim() === '') {
     errors.last_name = 'Enter last name';
   }
-  if (!values.phone || values.phone.trim() === '' || values.phone.length != 10) {
+  if (!values.phone || values.phone.trim() === '') {
     errors.phone = 'Enter a valid phone number';
   }
   if (!values.address_1 || values.address_1.trim() === '') {

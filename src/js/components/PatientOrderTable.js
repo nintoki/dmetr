@@ -30,7 +30,7 @@ class OrderTable extends Component {
           <td><Moment format="MM/DD/YY">{orders.created}</Moment></td>
           <td className={ orders.rush == 1 ? "rush" : "" }><Link to={"/order/" + orders.id}>{orders.id}</Link></td>
           <td>
-             {orders.short_desc} - <span className="light">{orders.description}</span>
+             {orders.code} - {orders.short_desc} <br /> <span className="light">{orders.description}</span>
             <br />
             { orders.exchange == 1 ? <span className="badge badge-info">exchanged </span> : "" }
             { orders.rtn == 1 ? <span className="badge badge-warning">returned</span> : "" }
@@ -196,7 +196,7 @@ class OrderTable extends Component {
               <Link
                 to={{
                   pathname: '/orderNew/'+this.props.patient_name,
-                  state: {patient_id: this.props.patient_id, oot: false}
+                  state: {patient_id: this.props.patient_id, oot: false, created: new Date() }
                 }}
               >
                 <button className="btn btn-success orderButton" style={{marginTop:'20px'}}>
@@ -210,7 +210,7 @@ class OrderTable extends Component {
             <Link
               to={{
                 pathname: '/orderNew/'+this.props.patient_name,
-                state: {patient_id: this.props.patient_id, oot: false}
+                state: {patient_id: this.props.patient_id, oot: false, created: new Date() }
               }}
               >
                 <button className="btn btn-success addButton">
