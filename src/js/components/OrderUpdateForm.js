@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import renderField from './renderField';
+import renderDateTimePicker from './renderDateTimePicker';
 import { validateOrderFields, validateOrderFieldsSuccess, validateOrderFieldsFailure } from '../actions/orderActions';
 import { updateOrder, updateOrderSuccess, updateOrderFailure } from '../actions/orderActions';
 
@@ -23,7 +24,7 @@ function validate(values) {
 const dispatchAndUpdateOrder = (values, dispatch) => {
   return dispatch(updateOrder(values))
     .then(result => {
-      // console.log("values", values)
+      console.log("values", values)
       // Note: Error's "data" is in result.payload.response.data (inside "response")
       // success's "data" is in result.payload.data
       if (result.payload.response && result.payload.response.status !== 200) {
@@ -88,11 +89,12 @@ class OrderUpdateForm extends Component {
                           name="id"
                           type="hidden"
                           component={ renderField }/>
-                    <Field
-                          name="created"
-                          type="hidden"
-                          component={ renderField }/>
                   </div>
+                  <Field
+                     name="created"
+                     component={ renderDateTimePicker }
+                     label="Order Date (MM/DD/YY)"
+                  />
                   <Field
                         name="clinic"
                         type="text"

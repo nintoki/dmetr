@@ -48,13 +48,19 @@ class OrderDetails extends Component {
               </Link>
               <div className="row">
                 <div className="col-md-12">
+                  <div className="modalInline" style={{paddingLeft:'30px', fontWeight:'600', letterSpacing:'1px'}}>
+                    <div className="order-pt">Patient:</div>
+                    <div className="order-cl">Clinic:</div>
+                    <div className="order-ins">Insurance:</div>
+                    <div className="order-dt">Date:</div>
+                  </div>
                   <div className="modalInline">
-                    <div className="order-pt">
+                    <div style={{fontSize:'18px', lineHeight:'1.4'}}>
                       <Link to={"/patient/" + this.props.activeOrder.order.patient_id}>{order.patient_name}</Link>
                     </div>
-                    <div className={ order.oot == 1 ? "oot order-cl" : "order-cl" }>{order.clinic}</div>
-                    <div className="order-ins">{order.insurance}</div>
-                    <div className="order-dt">
+                    <div className={ order.oot == 1 ? "oot mt-10 " : "mt-10 " }>{order.clinic}</div>
+                    <div className="mt-10 ">{order.insurance}</div>
+                    <div className="mt-10 ">
                       <Moment format="MM/DD/YY - hh:mm A">{order.created}</Moment><br />
                       <Moment fromNow>{order.created}</Moment>
                     </div>

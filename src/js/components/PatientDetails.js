@@ -61,7 +61,7 @@ class PatientDetails extends Component {
                 </div>
                 <div className="col-md-6">
                   <div className="modalInline">
-                    <div className="pt-bt">{patient.bt_id}</div>
+                    <div className="pt-bt">BT: {patient.bt_id}</div>
                     <div className="pt-ins">
                         {patient.ins_1}<br />
                         {patient.ins_2}<br />

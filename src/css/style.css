@@ -1,4 +1,19 @@
 @font-face {
+  font-family: 'Univers LT Std';
+  src: url(../fonts/UniversLTStd.otf) format('opentype');
+  font-weight: 400
+}
+@font-face {
+  font-family: 'Univers LT Std';
+  src: url(../fonts/UniversLTStd-Bold.otf) format('opentype');
+  font-weight: 600
+}
+@font-face {
+  font-family: 'Univers LT Std';
+  src: url(../fonts/UniversLTStd-Light.otf) format('opentype');
+  font-weight: 300
+}
+@font-face {
     font-family: 'FontAwesome';
     src: url(../fonts/FontAwesome.otf) format('opentype'),
     url(../fonts/fontawesome-webfont.ttf) format('ttf'),
@@ -249,8 +264,7 @@ td .op2 .opdiv input[type="checkbox"]:checked + label::before, .op2 .opdiv input
 }
 .modalInline {
     display: inline-table;
-    margin-right: 20px;
-    padding-left: 30px;
+    padding-left: 20px;
 }
 .editButton, .addButton, .addButtonsm {
     position: absolute;
@@ -291,8 +305,9 @@ td .op2 .opdiv input[type="checkbox"]:checked + label::before, .op2 .opdiv input
     font-size: 18px;
     line-height: 1.3;
     color: #676767;
+    font-weight: initial;
 }
-.pt-phone, .pt-bt, .order-pt {
+.pt-phone, .pt-bt {
   font-size: 18px;
   line-height: 1.4;
 }
@@ -326,7 +341,7 @@ td .op2 .opdiv input[type="checkbox"]:checked + label::before, .op2 .opdiv input
 .order-ins::before {
   content: '';
 }
-.pt-addy, .pt-ins, .order-dt, .order-cl {
+.pt-addy, .pt-ins, .order-dt, .order-cl, .order-ins, .mt-10 {
     margin-top: 10px;
 }
 
