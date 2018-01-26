@@ -14,7 +14,6 @@ import OrderNew from "../../pages/OrderNew"
 import OrderUpdate from "../../pages/OrderUpdate"
 import NoteNew from "../../pages/NoteNew"
 import NoteUpdate from "../../pages/NoteUpdate"
-import OrderProductPage from "../../pages/OrderProductPage"
 import OrderProductNew from "../../pages/OrderProductNew"
 import OrderProductUpdate from "../../pages/OrderProductUpdate"
 
@@ -51,6 +50,7 @@ export default class Nav extends React.Component {
               </button>
             </div>
             <div class={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
+              <div class="logo"><i class="fa fa-envira"></i></div>
               <ul class="nav navbar-nav">
                 <li>
                   <Link to="/" onClick={this.toggleCollapse.bind(this)}>Home</Link>
@@ -84,7 +84,6 @@ export default class Nav extends React.Component {
           <Route path="/noteNew/:patient_name" component={NoteNew} />
           <Route path="/noteUpdate" component={NoteUpdate} />
           <Route path="/orderProductNew" component={OrderProductNew} />
-          <Route path="/orderProduct/:id" component={OrderProductPage} />
           <Route path="/orderProductUpdate" component={OrderProductUpdate} />
         </Switch>
       </div>

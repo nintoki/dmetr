@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field, FieldArray, SubmissionError } from 'redux-form';
 import renderField from './renderField';
+import renderTextArea from './renderTextArea';
 import renderDateTimePicker from './renderDateTimePicker';
 import { createOrder, createOrderSuccess, createOrderFailure, resetNewOrder } from '../actions/orderActions';
 // import { validateOrderFields, validateOrderFieldsSuccess, validateOrderFieldsFailure } from '../actions/orderActions';
@@ -106,6 +107,11 @@ class OrdersForm extends Component {
                      type="text"
                      component={ renderField }
                      label="Insurance*" />
+                  <Field
+                     name="notes"
+                     type="text"
+                     component={ renderTextArea }
+                     label="Notes" />
                      <div>
                        <label htmlFor="oot">Out of Town</label>
                        <div>

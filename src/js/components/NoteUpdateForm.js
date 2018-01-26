@@ -68,7 +68,7 @@ class NoteUpdateForm extends Component {
     let n = activeNote.note;
     return (
       <div className='container divcon' style={{marginTop:'20px'}}>
-        <h1 className="formTit">Update Note: #{n.id}</h1>
+        <h1 className="formTit">Note: #{n.id}</h1>
         <h4><b>Patient:</b> {this.props.patient_name}</h4>
         { this.renderError(activeNote) }
         <form onSubmit={ handleSubmit(dispatchAndUpdateNote) } style={{marginRight: '50px'}}>
@@ -76,10 +76,14 @@ class NoteUpdateForm extends Component {
             <tbody>
               <tr>
                 <td>
-                  <div>
+                  <div style={{height:'0'}}>
                     <Field
                        name="id"
-                       type="text"
+                       type="hidden"
+                       component={ renderField }/>
+                    <Field
+                       name="patient_id"
+                       type="hidden"
                        component={ renderField }/>
                    </div>
                   <Field
@@ -91,7 +95,7 @@ class NoteUpdateForm extends Component {
               </tr>
             </tbody>
           </table>
-          <div style={{marginTop: '20px'}}>
+          {/* <div style={{marginTop: '20px'}}>
             <button
                     type="submit"
                     className="btn btn-primary"
@@ -103,9 +107,9 @@ class NoteUpdateForm extends Component {
               className="btn btn-error"
               onClick={this.context.router.history.goBack}
               >
-                Cancel
+                Back
             </button>
-          </div>
+          </div> */}
         </form>
       </div>
     )

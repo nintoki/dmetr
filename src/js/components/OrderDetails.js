@@ -20,6 +20,15 @@ class OrderDetails extends Component {
     this.props.fetchOrder(this.props.orderId);
   }
 
+  orderNotes(order) {
+    return (
+      !order.notes
+      ?
+      <div className="note-text light">No notes created.</div>
+      :
+      <div className="note-text light">{order.notes}</div>
+    )
+  }
   render() {
     const { order, loading, error } = this.props.activeOrder;
     if (loading) {
@@ -64,6 +73,10 @@ class OrderDetails extends Component {
                       <Moment format="MM/DD/YY - hh:mm A">{order.created}</Moment><br />
                       <Moment fromNow>{order.created}</Moment>
                     </div>
+                  </div>
+                  <div>
+                    <h2>Order Notes</h2>
+                    { this.orderNotes(order) }
                   </div>
                 </div>
               </div>

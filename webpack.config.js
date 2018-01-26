@@ -38,7 +38,13 @@ module.exports = {
   },
   output: {
     path: __dirname + "/src/",
+    publicPath: "/",
     filename: "client.min.js"
+  },
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './',
+    hot: true
   },
   plugins: debug ? [] : [
     new webpack.optimize.DedupePlugin(),

@@ -121,7 +121,7 @@ class PatientUpdateForm extends Component {
                   <Field
                          name="ins_1"
                          component={ renderField }
-                         label="Insurance 1" />
+                         label="Insurance 1*" />
                   <Field
                          name="ins_2"
                          component={ renderField }

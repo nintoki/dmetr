@@ -84,11 +84,11 @@ class OrderProductsForm extends React.Component {
         <h1>New Product</h1>
         <h4><b>Order:</b> #{this.props.initialValues.order_id}</h4>
         { this.renderError(newOrderProduct) }
-        <form onSubmit={ handleSubmit(dispatchAndCreateOrderProduct) } style={{marginRight: '50px'}}>
+        <form onSubmit={ handleSubmit(dispatchAndCreateOrderProduct) } style={{marginTop: '40px'}}>
           <table className="productForm">
             <tbody>
               <tr>
-                <td>
+                <td style={{verticalAlign:'top'}}>
                   <Field
                      name="product_id"
                      component={ renderProductDrop }
@@ -138,39 +138,36 @@ class OrderProductsForm extends React.Component {
                      </div>
                    </div>
                 </td>
-                <td style={{verticalAlign:'baseline'}}>
+                <td style={{verticalAlign:'top'}}>
                   <div className="op1">
                     <label>Order Phase 1</label>
                     <div className="opcon">
                       <div className="opdiv">
-                        <div class="optit">Ins</div>
+                        <div class="optit">Demo</div>
                           <Field name="op1_1" id="op1_1" component="input" type="checkbox" onClick={() => {this.props.change('op1_1_dt', dt)}}/>
                         <label htmlFor="op1_1" />
                         <div>—</div>
                       </div>
                       <div className="opdiv">
-                        <div class="optit">Meas</div>
+                        <div class="optit">Ins</div>
                           <Field name="op1_2" id="op1_2" component="input" type="checkbox" onClick={() => {this.props.change('op1_2_dt', dt)}}/>
                         <label htmlFor="op1_2" />
                         <div>—</div>
-
                       </div>
                       <div className="opdiv">
-                        <div class="optit">Rx</div>
+                        <div class="optit">EOB</div>
                           <Field name="op1_3" id="op1_3" component="input" type="checkbox" onClick={() => {this.props.change('op1_3_dt', dt)}}/>
                         <label htmlFor="op1_3" />
                         <div>—</div>
-
                       </div>
                       <div className="opdiv">
-                        <div class="optit">Note</div>
+                        <div class="optit">o.Rx</div>
                           <Field name="op1_4" id="op1_4" component="input" type="checkbox" onClick={() => {this.props.change('op1_4_dt', dt)}}/>
                         <label htmlFor="op1_4" />
                         <div>—</div>
-
                       </div>
                       <div className="opdiv">
-                        <div class="optit">Auth</div>
+                        <div class="optit">Meas</div>
                           <Field name="op1_5" id="op1_5" component="input" type="checkbox" onClick={() => {this.props.change('op1_5_dt', dt)}}/>
                         <label htmlFor="op1_5" />
                         <div>—</div>
@@ -203,21 +200,27 @@ class OrderProductsForm extends React.Component {
                     <label>Order Phase 2</label>
                     <div className="opcon">
                       <div className="opdiv">
-                        <div class="optit">Ordr</div>
+                        <div class="optit">JC.Rx</div>
                           <Field name="op2_1" id="op2_1" component="input" type="checkbox" onClick={() => {this.props.change('op2_1_dt', dt)}}/>
                         <label htmlFor="op2_1" />
                         <div>—</div>
                       </div>
                       <div className="opdiv">
-                        <div class="optit">Rcvd</div>
+                        <div class="optit">LMN</div>
                           <Field name="op2_2" id="op2_2" component="input" type="checkbox" onClick={() => {this.props.change('op2_2_dt', dt)}}/>
                         <label htmlFor="op2_2" />
                         <div>—</div>
                       </div>
                       <div className="opdiv">
-                        <div class="optit">Bill</div>
+                        <div class="optit">Note</div>
                           <Field name="op2_3" id="op2_3" component="input" type="checkbox" onClick={() => {this.props.change('op2_3_dt', dt)}}/>
                         <label htmlFor="op2_3" />
+                        <div>—</div>
+                      </div>
+                      <div className="opdiv">
+                        <div class="optit">Auth</div>
+                          <Field name="op2_4" id="op2_4" component="input" type="checkbox" onClick={() => {this.props.change('op2_4_dt', dt)}}/>
+                        <label htmlFor="op2_4" />
                         <div>—</div>
                       </div>
                     </div>
@@ -236,6 +239,26 @@ class OrderProductsForm extends React.Component {
                       type="hidden"
                       component={ renderField } />
                     <Field
+                      name="op2_4_dt"
+                      type="hidden"
+                      component={ renderField } />
+                    <Field
+                      name="op3_1_dt"
+                      type="hidden"
+                      component={ renderField } />
+                    <Field
+                      name="op3_2_dt"
+                      type="hidden"
+                      component={ renderField } />
+                    <Field
+                      name="op3_3_dt"
+                      type="hidden"
+                      component={ renderField } />
+                    <Field
+                      name="op3_4_dt"
+                      type="hidden"
+                      component={ renderField } />
+                    <Field
                       name="id"
                       type="hidden"
                       component={ renderField } />
@@ -243,6 +266,35 @@ class OrderProductsForm extends React.Component {
                       name="order_id"
                       type="hidden"
                       component={ renderField } />
+                  </div>
+                  <div className="op3">
+                    <label>Order Phase 3</label>
+                    <div className="opcon">
+                      <div className="opdiv">
+                        <div class="optit">Ordr</div>
+                          <Field name="op3_1" id="op3_1" component="input" type="checkbox" onClick={() => {this.props.change('op3_1_dt', dt)}}/>
+                        <label htmlFor="op3_1" />
+                        <div>—</div>
+                      </div>
+                      <div className="opdiv">
+                        <div class="optit">Dstb</div>
+                          <Field name="op3_2" id="op3_2" component="input" type="checkbox" onClick={() => {this.props.change('op3_2_dt', dt)}}/>
+                        <label htmlFor="op3_2" />
+                        <div>—</div>
+                      </div>
+                      <div className="opdiv">
+                        <div class="optit">Serv</div>
+                          <Field name="op3_3" id="op3_3" component="input" type="checkbox" onClick={() => {this.props.change('op3_3_dt', dt)}}/>
+                        <label htmlFor="op3_3" />
+                        <div>—</div>
+                      </div>
+                      <div className="opdiv">
+                        <div class="optit">Bill</div>
+                          <Field name="op3_4" id="op3_4" component="input" type="checkbox" onClick={() => {this.props.change('op3_4_dt', dt)}}/>
+                        <label htmlFor="op3_4" />
+                        <div>—</div>
+                      </div>
+                    </div>
                   </div>
                 </td>
               </tr>

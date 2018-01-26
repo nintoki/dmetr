@@ -14,7 +14,7 @@ class PatientResults extends Component {
     const { patients, loading, error } = this.props.patientResults;
 
     if(loading) {
-      return <div className="container divcon"><h1>Patient - Search Results</h1><h3>Loading...</h3></div>
+      return <div className="container divcon"><h1>Patient - <i>Search Results</i></h1><h3>Loading...</h3></div>
     } else if(error) {
       return <div className="alert alert-danger">Error: {error.message}</div>
     }
@@ -27,13 +27,20 @@ class PatientResults extends Component {
               <Link style={{margin:'20px 0 0 20px'}} className="btn btn-success plusButton" to="/patientNew">Create New Patient</Link>
             </div>
           :
-          <div className="container divcon">
+          <div className="container divcon pt-res">
             <div className="col-md-12 modalDiv" style={{maxWidth:'960px'}}>
-              <h2>Patient - Search Results</h2>
+              <h2>Patient - <i>Search Results</i></h2>
               <Link className="btn btn-success addButton" to="/patientNew">Create New Patient</Link>
               <ReactTable
                 data={patients}
                 columns={[
+                  {
+                    Header: '',
+                    width: 0,
+                    Cell: row => (
+                      <Link to={"patient/" + row.original.id}><div className="row-link"></div></Link>
+                    )
+                  },
                   {
                     Header: 'ID',
                     accessor: 'id',
@@ -44,14 +51,14 @@ class PatientResults extends Component {
                     accessor: 'patient_name',
                     Cell: row => (
                       <div>
-                        <Link to={"patient/" + row.original.id}><b className="blue">{row.value}</b></Link>
+                        <b className="blue">{row.value}</b>
                       </div>
                     )
                   },
                   {
                     Header: 'Address',
                     accessor: 'address_1',
-                    width: 300,
+                    width: 360,
                     Cell: row => (
                       <div className="p-addy">
                         {row.value}<br />{row.original.address_2}<br />{row.original.city}, {row.original.st} {row.original.zip}
@@ -74,14 +81,7 @@ class PatientResults extends Component {
                         {row.original.ins_3}<br />
                       </div>
                     )
-                  },
-                  {
-                    Header: '',
-                    width: 105,
-                    Cell: row => (
-                      <Link to={"patient/" + row.original.id}><button className="btn btn-primary btn-sm viewButton">View</button></Link>
-                    )
-                  },
+                  }
                 ]}
                 defaultPageSize={10}
                 className="-striped -highlight"

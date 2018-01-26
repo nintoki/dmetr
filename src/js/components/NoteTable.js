@@ -23,9 +23,12 @@ class NoteTable extends Component {
         </tr>
         :
         <tr key={notes.id}>
-          <td><Moment format="MM/DD/YY">{notes.created}</Moment></td>
-          <td style={{width:'95px'}}><Moment format="hh:mm A">{notes.created}</Moment></td>
-          <td>
+          <td style={{width:'90px', display:'block'}}>
+            <Moment format="MM/DD/YY">{notes.created}</Moment><br />
+            <Moment style={{fontSize:'12px', fontWeight:'300'}} format="-hh:mm A-">{notes.created}</Moment>
+          </td>
+          {/* <td style={{width:'95px'}}><Moment format="hh:mm A">{notes.created}</Moment></td> */}
+          <td className="ntd">
              <span className="light">{notes.note}</span>
           </td>
           <td style={{width:'35px'}}>
@@ -36,7 +39,7 @@ class NoteTable extends Component {
               }}
               >
               <button className="btn btn-primary btn-sm">
-                <i className="fa fa-pencil"></i>
+                <i className="fa fa-search"></i>
               </button>
             </Link>
           </td>
@@ -58,7 +61,7 @@ class NoteTable extends Component {
       !notes.length
           ? <div className="col-md-6 modalDiv">
               <h3 style={{marginBottom:'0'}}>No notes found.</h3>
-              <div className="row" style={{marginLeft:'10px'}}>
+              <div className="row">
                 <Link
                   to={{
                     pathname: '/noteNew/'+this.props.patient_name,
@@ -85,12 +88,11 @@ class NoteTable extends Component {
                 New Note
               </button>
             </Link>
-          <table className="pto">
+          <table className="pto ntab">
             <thead>
               <tr>
                 <td>Date</td>
-                <td>Time</td>
-                <td>Note</td>
+                <td className="ntd">Note</td>
                 <td></td>
               </tr>
             </thead>

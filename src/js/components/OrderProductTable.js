@@ -15,17 +15,18 @@ class OrderProductTable extends Component {
     return order_products.map((order_products) => {
       return (
         <tr key={order_products.id} className={ order_products.status == 1 ? "archived" : "" }>
+          <td style={{width:'90px'}}><Moment format="MM/DD/YY">{order_products.created}</Moment></td>
           <td className={ order_products.rush == 1 ? "rush" : "" }>
-            {order_products.code} - {order_products.short_desc} <br /> <span className="light">{order_products.description}</span>
-            <br />
+            {order_products.code} - {order_products.short_desc}
             { order_products.exchange == 1 ? <span className="badge badge-info">exchanged </span> : "" }
-            { order_products.rtn == 1 ? <span className="badge badge-warning">returned</span> : "" }
+            { order_products.rtn == 1 ? <span className="badge badge-default">returned</span> : "" }
+            <br /> <span className="light">{order_products.description}</span>
           </td>
           <td>
             <div className={ order_products.status == 1 ? "hidden" : "" }>
               <div className={ (order_products.op1_1 == 1 && order_products.op1_2 == 1 && order_products.op1_3 == 1 && order_products.op1_4 == 1 && order_products.op1_5 == 1 ) ? "hidden" : "op1" }>
                 <div className="opdiv">
-                  <div className="optit">Ins</div>
+                  <div className="optit">Demo</div>
                   <div>
                     <input
                       type="checkbox"
@@ -41,7 +42,7 @@ class OrderProductTable extends Component {
                   </div>
                 </div>
                 <div className="opdiv">
-                  <div className="optit">Meas</div>
+                  <div className="optit">Ins</div>
                   <div>
                     <input
                       type="checkbox"
@@ -57,7 +58,7 @@ class OrderProductTable extends Component {
                   </div>
                 </div>
                 <div className="opdiv">
-                  <div className="optit">Rx</div>
+                  <div className="optit">EOB</div>
                   <div>
                     <input
                       type="checkbox"
@@ -73,7 +74,7 @@ class OrderProductTable extends Component {
                   </div>
                 </div>
                 <div className="opdiv">
-                  <div className="optit">Note</div>
+                  <div className="optit">oRx</div>
                   <div>
                     <input
                       type="checkbox"
@@ -89,7 +90,7 @@ class OrderProductTable extends Component {
                   </div>
                 </div>
                 <div className="opdiv">
-                  <div className="optit">Auth</div>
+                  <div className="optit">Meas</div>
                   <div>
                     <input
                       type="checkbox"
@@ -105,9 +106,9 @@ class OrderProductTable extends Component {
                   </div>
                 </div>
               </div>
-              <div className={ (order_products.op1_1 == 1 && order_products.op1_2 == 1 && order_products.op1_3 == 1 && order_products.op1_4 == 1 && order_products.op1_5 == 1 ) ? "op2" : "hidden" }>
+              <div className={ (order_products.op1_1 == 0 || order_products.op1_2 == 0 || order_products.op1_3 == 0 || order_products.op1_4 == 0 || order_products.op1_5 == 0 || order_products.op1_1 == 1 && order_products.op1_2 == 1 && order_products.op1_3 == 1 && order_products.op1_4 == 1 && order_products.op1_5 == 1 && order_products.op2_1 == 1 && order_products.op2_2 == 1 && order_products.op2_3 == 1 && order_products.op2_4 == 1) ? "hidden" : "op2" }>
                 <div className="opdiv">
-                  <div className="optit">Ordr</div>
+                  <div className="optit">Rx</div>
                   <div>
                     <input
                       type="checkbox"
@@ -123,7 +124,7 @@ class OrderProductTable extends Component {
                   </div>
                 </div>
                 <div className="opdiv">
-                  <div className="optit">Rcvd</div>
+                  <div className="optit">LMN</div>
                   <div>
                     <input
                       type="checkbox"
@@ -139,7 +140,7 @@ class OrderProductTable extends Component {
                   </div>
                 </div>
                 <div className="opdiv">
-                  <div className="optit">Bill</div>
+                  <div className="optit">Note</div>
                   <div>
                     <input
                       type="checkbox"
@@ -154,11 +155,94 @@ class OrderProductTable extends Component {
                     { (order_products.op2_3_dt === null || order_products.op2_3_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{order_products.op2_3_dt}</Moment>}
                   </div>
                 </div>
+                <div className="opdiv">
+                  <div className="optit">Auth</div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="op2_4"
+                      id="op2_4"
+                      checked={ order_products.op2_4 == 1 }
+                      readOnly
+                    />
+                    <label for="op2_4" />
+                  </div>
+                  <div>
+                    { (order_products.op2_4_dt === null || order_products.op2_4_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{order_products.op2_4_dt}</Moment>}
+                  </div>
+                </div>
               </div>
+              <div className={(order_products.op1_1 == 0 || order_products.op1_2 == 0 || order_products.op1_3 == 0 || order_products.op1_4 == 0 || order_products.op1_5 == 0 || order_products.op2_1 == 0 || order_products.op2_2 == 0 || order_products.op2_3 == 0 || order_products.op2_4 == 0 || order_products.op3_1 == 1 && order_products.op3_2 == 1 && order_products.op3_3 == 1 && order_products.op3_4 == 1 ) ? "hidden" : "op3" }>
+                <div className="opdiv">
+                  <div className="optit">Ordr</div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="op3_1"
+                      id="op3_1"
+                      checked={ order_products.op3_1 == 1 }
+                      readOnly
+                    />
+                    <label for="op3_1" />
+                  </div>
+                  <div>
+                    { (order_products.op3_1_dt === null || order_products.op3_1_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{order_products.op3_1_dt}</Moment>}
+                  </div>
+                </div>
+                <div className="opdiv">
+                  <div className="optit">Dstb</div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="op3_2"
+                      id="op3_2"
+                      checked={ order_products.op3_2 == 1 }
+                      readOnly
+                    />
+                    <label for="op3_2" />
+                  </div>
+                  <div>
+                    { (order_products.op3_2_dt === null || order_products.op3_2_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{order_products.op3_2_dt}</Moment>}
+                  </div>
+                </div>
+                <div className="opdiv">
+                  <div className="optit">Tckt</div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="op3_3"
+                      id="op3_3"
+                      checked={ order_products.op3_3 == 1 }
+                      readOnly
+                    />
+                    <label for="op3_3" />
+                  </div>
+                  <div>
+                    { (order_products.op3_3_dt === null || order_products.op3_3_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{order_products.op3_3_dt}</Moment>}
+                  </div>
+                </div>
+                <div className="opdiv">
+                  <div className="optit">Bill</div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="op3_4"
+                      id="op3_4"
+                      checked={ order_products.op3_4 == 1 }
+                      readOnly
+                    />
+                    <label for="op3_4" />
+                  </div>
+                  <div>
+                    { (order_products.op3_4_dt === null || order_products.op3_4_dt === "2000-12-25 00:00:00") ? "—" : <Moment format="MM/DD">{order_products.op3_4_dt}</Moment>}
+                  </div>
+                </div>
+              </div>
+              <div className={(order_products.op1_1 == 1 && order_products.op1_2 == 1 && order_products.op1_3 == 1 && order_products.op1_4 == 1 && order_products.op1_5 == 1 && order_products.op2_1 == 1 && order_products.op2_2 == 1 && order_products.op2_3 == 1 && order_products.op2_4 == 1 && order_products.op3_1 == 1 && order_products.op3_2 == 1 && order_products.op3_3 == 1 && order_products.op3_4 == 1 ) ? "" : "hidden" }><b className="red">Completed - Please archive</b></div>
             </div>
-            <div className={ order_products.status == 1 ? "" : "hidden" }><b>Product fulfilled</b> - <Moment format="MM/DD/YY">{order_products.op2_3_dt}</Moment></div>
+            <div className={ order_products.status == 1 ? "" : "hidden" }><b>Fulfilled</b> - <Moment format="MM/DD/YY">{order_products.op3_4_dt}</Moment></div>
           </td>
-          <td style={{maxWidth:'85px'}}>
+          <td style={{maxWidth:'100px'}}>
             <Link
               to={{
                 pathname: '/orderProductUpdate',
@@ -207,6 +291,11 @@ class OrderProductTable extends Component {
                   op2_1: false,
                   op2_2: false,
                   op2_3: false,
+                  op2_4: false,
+                  op3_1: false,
+                  op3_2: false,
+                  op3_3: false,
+                  op3_4: false,
                   op1_1_dt: nullDate,
                   op1_2_dt: nullDate,
                   op1_3_dt: nullDate,
@@ -215,6 +304,11 @@ class OrderProductTable extends Component {
                   op2_1_dt: nullDate,
                   op2_2_dt: nullDate,
                   op2_3_dt: nullDate,
+                  op2_4_dt: nullDate,
+                  op3_1_dt: nullDate,
+                  op3_2_dt: nullDate,
+                  op3_3_dt: nullDate,
+                  op3_4_dt: nullDate,
                   rush: false,
                   exchange: false,
                   rtn: false,
@@ -226,6 +320,7 @@ class OrderProductTable extends Component {
               <table className="pto">
                 <thead>
                   <tr>
+                    <td>Date</td>
                     <td>Products</td>
                     <td>Phase</td>
                     <td></td>
@@ -255,6 +350,11 @@ class OrderProductTable extends Component {
             op2_1: false,
             op2_2: false,
             op2_3: false,
+            op2_4: false,
+            op3_1: false,
+            op3_2: false,
+            op3_3: false,
+            op3_4: false,
             op1_1_dt: nullDate,
             op1_2_dt: nullDate,
             op1_3_dt: nullDate,
@@ -263,6 +363,11 @@ class OrderProductTable extends Component {
             op2_1_dt: nullDate,
             op2_2_dt: nullDate,
             op2_3_dt: nullDate,
+            op2_4_dt: nullDate,
+            op3_1_dt: nullDate,
+            op3_2_dt: nullDate,
+            op3_3_dt: nullDate,
+            op3_4_dt: nullDate,
             rush: false,
             exchange: false,
             rtn: false,
@@ -274,6 +379,7 @@ class OrderProductTable extends Component {
         <table className="pto">
           <thead>
             <tr>
+              <td>Date</td>
               <td>Products</td>
               <td>Phase</td>
               <td></td>

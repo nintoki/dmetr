@@ -59,6 +59,27 @@ table a:not(.btn), .table a:not(.btn) {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+.nav > li > a {
+    letter-spacing: 1px;
+    padding: 15px 25px;
+}
+.logo {
+    float: left;
+    display: inline-block;
+    height: 50px;
+    color: #3fb618;
+    font-size: 24px;
+    line-height: 2;
+    margin: 0px 20px 0 0;
+}
+.logo::before {
+    font-family: fontawesome;
+    content: '';
+    position: absolute;
+    margin: 1px 0px 0px -1px;
+    color: #fff;
+    z-index: -1;
+}
 
 .divcon {
     margin-top: 80px;
@@ -85,11 +106,11 @@ thead td, .rt-th {
   font-weight: 300;
 }
 .pto {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 .pto tr, .pto td {
   padding: 10px 15px;
-  font-size: 14px;
+  /* font-size: 14px; */
   vertical-align: baseline;
 }
 
@@ -156,13 +177,22 @@ thead td, .rt-th {
 .container .ReactTable .rt-thead .rt-th.-sort-desc::after, .container .ReactTable .rt-thead .rt-td.-sort-desc::after {
     content: '';
 }
-
-.op1 + .op2 {
+.overflow {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+}
+.badge {
+    margin-left:8px;
+}
+.op1 + .op2, .op2 + .op3 {
     margin-top: 10px;
 }
 .optit {
     margin-bottom: 4px;
 }
+
 /* Checkboxes */
 .opcon {
     border: 1px solid #ccc;
@@ -175,13 +205,14 @@ thead td, .rt-th {
 .opdiv:last-child {
     margin-right: 0;
 }
-.opdiv {
+.opdiv, .opdiv-min {
     display: inline-table;
     margin: 0 8px;
     text-align: center;
     font-size: 12px;
     min-width: 32px;
 }
+
 .opdiv input[type="checkbox"] {
     cursor: pointer;
     opacity: 0;
@@ -222,13 +253,52 @@ td .opdiv input[type="checkbox"] + label::before, .opdiv input[type="checkbox"] 
     -webkit-transition: 0.3s ease-in-out;
     transition: 0.3s ease-in-out;
 }
-td .op1 .opdiv input[type="checkbox"]:checked + label::before, .op1 .opdiv input[type="checkbox"]:checked + label::before {
+td .op1 .opdiv input[type="checkbox"]:checked + label::before, .op1 .opdiv input[type="checkbox"]:checked + label::before, .op1-min .op-comp {
+    background-color: #ffd625;
+    border-color: #ffd625;
+}
+td .op2 .opdiv input[type="checkbox"]:checked + label::before, .op2 .opdiv input[type="checkbox"]:checked + label::before, .op2-min .op-comp {
     background-color: #3fb618;
     border-color: #3fb618;
 }
-td .op2 .opdiv input[type="checkbox"]:checked + label::before, .op2 .opdiv input[type="checkbox"]:checked + label::before {
+td .op3 .opdiv input[type="checkbox"]:checked + label::before, .op3 .opdiv input[type="checkbox"]:checked + label::before, .op3-min .op-comp {
     background-color: #2780e3;
     border-color: #2780e3;
+}
+
+.container .ReactTable .rt-td:first-child, .container .ReactTable .rt-th:first-child {
+    padding: 0;
+}
+.row-link {
+    position: absolute;
+    width: 100%;
+    height: 64px;
+    z-index: 1;
+}
+.pt-res .row-link {
+  height: 92px;
+}
+.pos-abs {
+  position: absolute;
+  z-index: 2;
+}
+.flfd {
+  margin-top: 10px;
+}
+
+/*Minimal phase view*/
+div .opdiv-min {
+  margin: 0 4px;
+}
+.op-open {
+  background: #fff
+}
+.op-open, .op-comp {
+    width: 13px;
+    height: 13px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    margin: 0 auto;
 }
 
 .modalDiv h2::before, .modalDiv h2.order::before, .container .ReactTable .rt-thead .rt-th.-sort-asc::after, .container .ReactTable .rt-thead .rt-td.-sort-asc::after, .container .ReactTable .rt-thead .rt-th.-sort-desc::after, .container .ReactTable .rt-thead .rt-td.-sort-desc::after, .editButton > .btn::after, .editButton.optab::after, .viewButton::after, .addButton::before, .plusButton::before, .backButton::before {
@@ -238,7 +308,7 @@ td .op2 .opdiv input[type="checkbox"]:checked + label::before, .op2 .opdiv input
 /*Patient Page*/
 .modalDiv {
     line-height: 1.6;
-    padding: 0 20px 0 19px;
+    padding: 0 20px 15px;
     border-radius: 3px;
     background: #fff;
 }
@@ -260,11 +330,11 @@ td .op2 .opdiv input[type="checkbox"]:checked + label::before, .op2 .opdiv input
     content: '';
 } */
 .modalDiv .row {
-    padding: 20px 0;
+    padding: 12px 0;
 }
 .modalInline {
     display: inline-table;
-    padding-left: 20px;
+    padding: 0 0 20px 25px;
 }
 .editButton, .addButton, .addButtonsm {
     position: absolute;
@@ -344,6 +414,18 @@ td .op2 .opdiv input[type="checkbox"]:checked + label::before, .op2 .opdiv input
 .pt-addy, .pt-ins, .order-dt, .order-cl, .order-ins, .mt-10 {
     margin-top: 10px;
 }
+.ntab {
+  max-height: 250px;
+  overflow-y: scroll;
+  display: block;
+}
+.ntd {
+  width: 100%;
+}
+.note-text {
+  margin: 20px 0 10px;
+  white-space: pre-wrap;
+}
 
 
 /* Conditionals */
@@ -408,17 +490,17 @@ td .op2 .opdiv input[type="checkbox"]:checked + label::before, .op2 .opdiv input
     margin-right: 0;
 }
 
-label {
+label, .sm-txt {
     font-weight: 300;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.op1, .op2 {
-  min-width: 265px;
+.op1, .op2, .op3 {
+  min-width: 235px;
 }
-.productForm .op1, .productForm .op2 {
+.productForm .op1, .productForm .op2, .productForm .op3 {
   display: inline-block;
 }
 
