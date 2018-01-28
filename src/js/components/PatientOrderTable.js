@@ -21,15 +21,15 @@ class OrderTable extends Component {
 
     return (
       !orders.length
-          ? <div className='container divcon'>
-              <h2>No orders found.</h2>
+          ? <div className="col-md-12 modalDiv" style={{marginTop:'20px'}}>
+              <h3>No orders found.</h3>
               <Link
                 to={{
                   pathname: '/orderNew/'+this.props.patient_name,
                   state: {patient_id: this.props.patient_id, oot: false, created: new Date() }
                 }}
               >
-                <button className="btn btn-success orderButton" style={{marginTop:'20px'}}>
+                <button className="btn btn-success plusButton" style={{margin:'5px 0 10px'}}>
                   Add Order
                 </button>
               </Link>
@@ -84,7 +84,7 @@ class OrderTable extends Component {
                   Cell: row => (
                     row.original.code === null
                     ?
-                    <div><strong className="red">No products found.</strong></div>
+                    <div><strong className="red">Please add products.</strong></div>
                     :
                     <div className={row.original.status == 1 ? "archived" : ""}>
                       {row.original.code} - {row.original.short_desc}

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Switch, Route, Link } from 'react-router-dom'
 import Moment from 'react-moment'
 import OrderPage from "../pages/OrderPage"
-
+import matchSorter from 'match-sorter'
 import ReactTable from 'react-table'
 
 class OrderTable extends Component {
@@ -30,6 +30,9 @@ class OrderTable extends Component {
             <h1>Orders - <i>Archive</i></h1>
             <ReactTable
               data={orders.filter((o) => { if (o.status == 1) return true })}
+              filterable
+              defaultFilterMethod={(filter, row) =>
+                String(row[filter.id]) === filter.value}
               columns={[
                 {
                   Header: '',
@@ -42,6 +45,9 @@ class OrderTable extends Component {
                   Header: 'Date',
                   accessor: 'created',
                   width: 90,
+                  filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["created"] }),
+                  filterAll: true,
                   Cell: row => (
                     <Moment format="MM/DD/YY">{row.value}</Moment>
                   )
@@ -51,6 +57,9 @@ class OrderTable extends Component {
                   id: 'id',
                   accessor: 'id',
                   width: 110,
+                  filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["id"] }),
+                  filterAll: true,
                   Cell: row => (
                     <div class={ row.original.rush == 1 ? "rush" : "" }>
                       {row.value}
@@ -60,20 +69,26 @@ class OrderTable extends Component {
                 {
                   Header: 'Name',
                   accessor: 'patient_name',
+                  filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["patient_name"] }),
+                  filterAll: true,
                   Cell: row => (
                     <Link className="pos-abs" to={"/patient/" + row.original.patient_id}>{row.value}</Link>
                   )
                 },
                 {
                   Header: 'Products',
-                  accessor: 'description',
+                  accessor: 'short_desc',
                   width: 340,
+                  filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["short_desc"] }),
+                  filterAll: true,
                   Cell: row => (
                     <div>
-                      {row.original.code} - {row.original.short_desc}
+                      {row.original.code} - {row.value}
                       { row.original.exchange == 1 ? <span className="badge badge-info">exchanged </span> : "" }
                       { row.original.rtn == 1 ? <span className="badge badge-default">returned</span> : "" }
-                      <br /> <span className="light overflow">{row.value}</span>
+                      <br /> <span className="light overflow">{row.original.description}</span>
                     </div>
                   )
                 },
@@ -91,6 +106,9 @@ class OrderTable extends Component {
                   Header: 'Clinic',
                   accessor: 'clinic',
                   width:130,
+                  filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["clinic"] }),
+                  filterAll: true,
                   Cell: row => (
                     <div class={ row.original.oot == 1 ? "oot" : "" }>
                       {row.value}
@@ -101,6 +119,9 @@ class OrderTable extends Component {
                   Header: 'Insurance',
                   accessor: 'insurance',
                   width: 110,
+                  filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["insurance"] }),
+                  filterAll: true
                 }
               ]}
               defaultPageSize={10}

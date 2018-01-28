@@ -5,7 +5,7 @@ export default class Phases extends Component {
 	render() {
 		let phase = this.props.phase;
     return (
-			<div>
+			<div className={phase.code === null ? "hidden" : ""}>
 				<div className={ (phase.op1_1 == 1 && phase.op1_2 == 1 && phase.op1_3 == 1 && phase.op1_4 == 1 && phase.op1_5 == 1 ) ? "hidden" : "op1-min" }>
 					<div className="opdiv-min">
 						<div className="optit">Demo</div>
@@ -64,7 +64,7 @@ export default class Phases extends Component {
 						<div className={phase.op3_4 == 1 ? "op-comp" : "op-open"}></div>
 					</div>
 				</div>
-				<div className={(phase.op1_1 == 1 && phase.op1_2 == 1 && phase.op1_3 == 1 && phase.op1_4 == 1 && phase.op1_5 == 1 && phase.op2_1 == 1 && phase.op2_2 == 1 && phase.op2_3 == 1 && phase.op2_4 == 1 && phase.op3_1 == 1 && phase.op3_2 == 1 && phase.op3_3 == 1 && phase.op3_4 == 1 ) ? "" : "hidden" }><b className="red">Completed - Please archive</b></div>
+				<div className={(phase.op1_1 == 1 && phase.op1_2 == 1 && phase.op1_3 == 1 && phase.op1_4 == 1 && phase.op1_5 == 1 && phase.op2_1 == 1 && phase.op2_2 == 1 && phase.op2_3 == 1 && phase.op2_4 == 1 && phase.op3_1 == 1 && phase.op3_2 == 1 && phase.op3_3 == 1 && phase.op3_4 == 1 ) ? "" : "hidden" }><strong className="red">Completed - Please archive</strong></div>
 			</div>
     );
   }

@@ -70,7 +70,7 @@ table a:not(.btn), .table a:not(.btn) {
     color: #3fb618;
     font-size: 24px;
     line-height: 2;
-    margin: 0px 20px 0 0;
+    margin: 0px 25px 0 0;
 }
 .logo::before {
     font-family: fontawesome;
@@ -79,6 +79,11 @@ table a:not(.btn), .table a:not(.btn) {
     margin: 1px 0px 0px -1px;
     color: #fff;
     z-index: -1;
+}
+.logo::after {
+    content: 'dmetr';
+    color: #fff;
+    margin-left: 4px;
 }
 
 .divcon {
@@ -264,6 +269,9 @@ td .op2 .opdiv input[type="checkbox"]:checked + label::before, .op2 .opdiv input
 td .op3 .opdiv input[type="checkbox"]:checked + label::before, .op3 .opdiv input[type="checkbox"]:checked + label::before, .op3-min .op-comp {
     background-color: #2780e3;
     border-color: #2780e3;
+}
+.op1-min + .op2-min, .op2-min + .op3-min {
+    margin-top: 10px;
 }
 
 .container .ReactTable .rt-td:first-child, .container .ReactTable .rt-th:first-child {

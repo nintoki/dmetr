@@ -238,7 +238,7 @@ class OrderProductTable extends Component {
                   </div>
                 </div>
               </div>
-              <div className={(order_products.op1_1 == 1 && order_products.op1_2 == 1 && order_products.op1_3 == 1 && order_products.op1_4 == 1 && order_products.op1_5 == 1 && order_products.op2_1 == 1 && order_products.op2_2 == 1 && order_products.op2_3 == 1 && order_products.op2_4 == 1 && order_products.op3_1 == 1 && order_products.op3_2 == 1 && order_products.op3_3 == 1 && order_products.op3_4 == 1 ) ? "" : "hidden" }><b className="red">Completed - Please archive</b></div>
+              <div className={(order_products.op1_1 == 1 && order_products.op1_2 == 1 && order_products.op1_3 == 1 && order_products.op1_4 == 1 && order_products.op1_5 == 1 && order_products.op2_1 == 1 && order_products.op2_2 == 1 && order_products.op2_3 == 1 && order_products.op2_4 == 1 && order_products.op3_1 == 1 && order_products.op3_2 == 1 && order_products.op3_3 == 1 && order_products.op3_4 == 1 ) ? "" : "hidden" }><strong className="red">Completed - Please archive</strong></div>
             </div>
             <div className={ order_products.status == 1 ? "" : "hidden" }><b>Fulfilled</b> - <Moment format="MM/DD/YY">{order_products.op3_4_dt}</Moment></div>
           </td>
@@ -328,7 +328,7 @@ class OrderProductTable extends Component {
                 </thead>
                 <tbody>
                   <tr>
-                    <td><strong className="red">No products found.</strong></td>
+                    <td><strong className="red">Please add products.</strong></td>
                     <td></td>
                     <td></td>
                   </tr>

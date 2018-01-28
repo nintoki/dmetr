@@ -61,7 +61,7 @@ class NoteTable extends Component {
       !notes.length
           ? <div className="col-md-6 modalDiv">
               <h3 style={{marginBottom:'0'}}>No notes found.</h3>
-              <div className="row">
+              <div className="row" style={{marginLeft:'0'}}>
                 <Link
                   to={{
                     pathname: '/noteNew/'+this.props.patient_name,
