@@ -77,6 +77,12 @@ export function fetchPtOrders(id) {
     payload: request
   };
 }
+
+export function resetOrders() {
+  return {
+    type: RESET_ORDERS
+  }
+}
 ;
 
 export function createOrder(props) {

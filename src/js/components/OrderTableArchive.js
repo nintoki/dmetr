@@ -17,15 +17,15 @@ class OrderTable extends Component {
     const { orders, loading, error } = this.props.orderTable;
 
     if(loading) {
-      return <div className="container"><h1>Orders</h1><h3>Loading...</h3></div>
+      return <div className="container divcon"><h1>Orders - <i>Archive</i></h1><h3>Loading...</h3></div>
     } else if(error) {
-      return <div className="alert alert-danger">Error: {error.message}</div>
+      return <div className='container divcon'><h2>No orders found.</h2></div>
     }
 
     return (
-      !orders.length
-          ? <div className='container divcon'><h2>No orders archived.</h2></div>
-          :
+      // !orders.length
+      //     ? <div className='container divcon'><h2>No orders archived.</h2></div>
+      //     :
           <div class="container divcon archived modalFormat">
             <h1>Orders - <i>Archive</i></h1>
             <ReactTable
@@ -69,11 +69,14 @@ class OrderTable extends Component {
                 {
                   Header: 'Name',
                   accessor: 'patient_name',
+				  width: 200,
                   filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["patient_name"] }),
                   filterAll: true,
                   Cell: row => (
-                    <Link className="pos-abs" to={"/patient/" + row.original.patient_id}>{row.value}</Link>
+                    <div className={ row.original.ptnote != null && (row.original.ptnote).toLowerCase().indexOf("jcfitter") >= 0 ? "jcfit" : ""}>
+                      <Link className="pos-abs" to={"/patient/" + row.original.patient_id}>{row.value}</Link>
+                    </div>
                   )
                 },
                 {
@@ -94,8 +97,11 @@ class OrderTable extends Component {
                 },
                 {
                   Header: 'Phase',
-                  // accessor: 'op1_1',
+                  accessor: 'description',
                   width: 255,
+				  filterMethod: (filter, rows) =>
+					matchSorter(rows, filter.value, { keys: ["description"] }),
+				  filterAll: true,
                   Cell: row => (
                     <div>
                       <div className={row.original.status == 1 ? "flfd" : "hidden" }><b>Fulfilled</b> - <Moment format="MM/DD/YY">{row.original.op3_4_dt}</Moment></div>
@@ -110,7 +116,7 @@ class OrderTable extends Component {
                     matchSorter(rows, filter.value, { keys: ["clinic"] }),
                   filterAll: true,
                   Cell: row => (
-                    <div class={ row.original.oot == 1 ? "oot" : "" }>
+                    <div className={ row.original.oot == 1 ? "oot cap" : "cap" }>
                       {row.value}
                     </div>
                   )
@@ -121,7 +127,12 @@ class OrderTable extends Component {
                   width: 110,
                   filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["insurance"] }),
-                  filterAll: true
+                  filterAll: true,
+                  Cell: row => (
+                    <div className="cap">
+                      {row.value}
+                    </div>
+                  )
                 }
               ]}
               defaultPageSize={10}

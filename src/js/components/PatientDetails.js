@@ -53,7 +53,7 @@ class PatientDetails extends Component {
                 <div className="col-md-6">
                   <div className="modalInline">
                     <div className="pt-phone">
-                      <NumberFormat value={patient.phone} displayType={'text'} format="(###) ###-####" />
+                      <NumberFormat value={!patient.phone ? '0000000000' : patient.phone} displayType={'text'} format="(###) ###-####" />
                     </div>
                     <div className="pt-addy">{patient.address_1}<br />{patient.address_2}<br />{patient.city}, {patient.st} {patient.zip}</div>
                     {/* <div className="pt-id">{patient.id}</div> */}
@@ -69,6 +69,9 @@ class PatientDetails extends Component {
                     </div>
                     {/* <div className=""><Moment format="MM/DD/YY">{patient.created}</Moment></div> */}
                   </div>
+                </div>
+                <div className="col-md-12">
+                  <div className="ptnote light">{patient.ptnote}</div>
                 </div>
               </div>
             </div>

@@ -68,6 +68,13 @@ export function fetchPatientsFailure(error) {
   };
 }
 
+export function resetPatients() {
+  console.log("reset")
+  return {
+    type: RESET_PATIENTS
+  };
+}
+
 export function searchPatients(searchTerm) {
   const request = axios({
     method: 'get',

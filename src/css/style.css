@@ -47,6 +47,9 @@ body {
 b {
   font-weight:500;
 }
+.disabled {
+  pointer-events: none;
+}
 table a:not(.btn), .table a:not(.btn) {
     text-decoration: none;
 }
@@ -59,6 +62,12 @@ table a:not(.btn), .table a:not(.btn) {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+.cap {
+  text-transform: capitalize;
+}
+.prewrap {
+  white-space: pre-wrap;
+}
 .nav > li > a {
     letter-spacing: 1px;
     padding: 15px 25px;
@@ -67,23 +76,21 @@ table a:not(.btn), .table a:not(.btn) {
     float: left;
     display: inline-block;
     height: 50px;
-    color: #3fb618;
+    color: #fff;
     font-size: 24px;
     line-height: 2;
     margin: 0px 25px 0 0;
 }
-.logo::before {
-    font-family: fontawesome;
-    content: '';
-    position: absolute;
-    margin: 1px 0px 0px -1px;
-    color: #fff;
-    z-index: -1;
+.logo i {
+    color: #3fb618;
+    margin-right: 2px;
+    text-shadow: -1px 1px 0px #fff;
 }
 .logo::after {
-    content: 'dmetr';
-    color: #fff;
+    content: 'BETA';
+    color: #f05050;
     margin-left: 4px;
+    font-size: 10px;
 }
 
 .divcon {
@@ -309,7 +316,7 @@ div .opdiv-min {
     margin: 0 auto;
 }
 
-.modalDiv h2::before, .modalDiv h2.order::before, .container .ReactTable .rt-thead .rt-th.-sort-asc::after, .container .ReactTable .rt-thead .rt-td.-sort-asc::after, .container .ReactTable .rt-thead .rt-th.-sort-desc::after, .container .ReactTable .rt-thead .rt-td.-sort-desc::after, .editButton > .btn::after, .editButton.optab::after, .viewButton::after, .addButton::before, .plusButton::before, .backButton::before {
+.modalDiv h2::before, .modalDiv h2.order::before, .container .ReactTable .rt-thead .rt-th.-sort-asc::after, .container .ReactTable .rt-thead .rt-td.-sort-asc::after, .container .ReactTable .rt-thead .rt-th.-sort-desc::after, .container .ReactTable .rt-thead .rt-td.-sort-desc::after, .editButton > .btn::after, .editButton.optab::after, .viewButton::after, .addButton::before, .plusButton::before, .backButton::before, .jcfit a::after {
   font-family: FontAwesome;
 }
 
@@ -343,6 +350,7 @@ div .opdiv-min {
 .modalInline {
     display: inline-table;
     padding: 0 0 20px 25px;
+    text-transform: capitalize;
 }
 .editButton, .addButton, .addButtonsm {
     position: absolute;
@@ -421,6 +429,18 @@ div .opdiv-min {
 }
 .pt-addy, .pt-ins, .order-dt, .order-cl, .order-ins, .mt-10 {
     margin-top: 10px;
+}
+.ptnote {
+  background: #fafbfc;
+  border-radius: 4px;
+  padding: 10px 20px;
+  max-height: 105px;
+  overflow-y: scroll;
+  white-space: pre-wrap;
+}
+.jcfit a::after {
+  content:'';
+  margin-left: 10px;
 }
 .ntab {
   max-height: 250px;
@@ -505,7 +525,7 @@ label, .sm-txt {
     letter-spacing: 1px;
 }
 
-.op1, .op2, .op3 {
+.op1, .op2, .op3, .oparch {
   min-width: 235px;
 }
 .productForm .op1, .productForm .op2, .productForm .op3 {

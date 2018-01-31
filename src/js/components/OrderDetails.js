@@ -44,7 +44,7 @@ class OrderDetails extends Component {
 
       <div className="container">
           <div className="row">
-            <div className="col-md-4 modalDiv">
+            <div className="col-md-4 modalDiv" style={{minWidth:'360px'}}>
               <h2 className="order">Order: #{order.id}</h2>
               <Link
                 to={{

@@ -9,6 +9,9 @@ class OrderTable extends Component {
   componentWillMount() {
     this.props.fetchPtOrders(this.props.patient_id);
   }
+  componentWillUnmount() {
+    this.props.resetMe();
+  }
 
   render() {
     const { orders, loading, error } = this.props.orderTable;
@@ -105,7 +108,6 @@ class OrderTable extends Component {
                       </div>
                       <div className={ row.original.status == 1 ? "flfd" : "hidden" }><b>Fulfilled</b> - <Moment format="MM/DD/YY">{row.original.op3_4_dt}</Moment></div>
                     </div>
-
                   )
                 },
                 {
@@ -113,7 +115,7 @@ class OrderTable extends Component {
                   accessor: 'clinic',
                   width:130,
                   Cell: row => (
-                    <div className={ row.original.oot == 1 ? "oot" : "" }>
+                    <div className={ row.original.oot == 1 ? "oot cap" : "cap" }>
                       {row.value}
                     </div>
                   )
@@ -122,9 +124,14 @@ class OrderTable extends Component {
                   Header: 'Insurance',
                   accessor: 'insurance',
                   width: 110,
+                  Cell: row => (
+                    <div className="cap">
+                      {row.value}
+                    </div>
+                  )
                 }
               ]}
-              defaultPageSize={5}
+              defaultPageSize={10}
               className="-striped -highlight"
             />
         </div>

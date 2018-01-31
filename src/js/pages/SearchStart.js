@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Search from '../components/Search'
 
+
 export default class SearchStart extends Component {
 	// componentWillMount() {
   //   this.props.loadUserFromToken();
@@ -8,8 +9,8 @@ export default class SearchStart extends Component {
 
   render() {
     return (
-      <div>
-				<Search />
+      <div className="container divcon">
+         <Search />
       </div>
     );
   }

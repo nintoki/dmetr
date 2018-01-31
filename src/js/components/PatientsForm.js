@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link, push } from 'react-router-dom';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import renderField from './renderField';
+import renderTextArea from './renderTextArea';
 import renderStateDrop from './renderStateDrop';
 import normalizePhone from './normalizePhone';
 import normalizeZip from './normalizeZip';
@@ -18,24 +19,24 @@ function validate(values) {
   if (!values.last_name || values.last_name.trim() === '') {
     errors.last_name = 'Enter last name';
   }
-  if (!values.phone || values.phone.trim() === '') {
-    errors.phone = 'Enter a valid phone number';
-  }
-  if (!values.address_1 || values.address_1.trim() === '') {
-    errors.address_1 = 'Enter a address';
-  }
-  if (!values.city || values.city.trim() === '') {
-    errors.city = 'Enter a city';
-  }
-  if (!values.st || values.st.trim() === '') {
-    errors.st = 'Choose a state';
-  }
-  if (!values.zip || values.zip.trim() === '' || values.zip.length != 5) {
-    errors.zip = 'Enter a valid zip';
-  }
-  if (!values.ins_1 || values.ins_1.trim() === '') {
-    errors.ins_1 = 'Enter an insurance';
-  }
+  // if (!values.phone || values.phone.trim() === '') {
+  //   errors.phone = 'Enter a valid phone number';
+  // }
+  // if (!values.address_1 || values.address_1.trim() === '') {
+  //   errors.address_1 = 'Enter a address';
+  // }
+  // if (!values.city || values.city.trim() === '') {
+  //   errors.city = 'Enter a city';
+  // }
+  // if (!values.st || values.st.trim() === '') {
+  //   errors.st = 'Choose a state';
+  // }
+  // if (!values.zip || values.zip.trim() === '' || values.zip.length != 5) {
+  //   errors.zip = 'Enter a valid zip';
+  // }
+  // if (!values.ins_1 || values.ins_1.trim() === '') {
+  //   errors.ins_1 = 'Enter an insurance';
+  // }
 
   return errors;
 }
@@ -135,7 +136,7 @@ class PatientsForm extends Component {
                   <Field
                          name="ins_1"
                          component={ renderField }
-                         label="Insurance 1*" />
+                         label="Insurance 1" />
                   <Field
                          name="ins_2"
                          component={ renderField }
@@ -151,13 +152,13 @@ class PatientsForm extends Component {
                   <Field
                          name="phone"
                          component={ renderField }
-                         label="Phone*"
+                         label="Phone"
                          normalize={normalizePhone}
                           />
                   <Field
                          name="address_1"
                          component={ renderField }
-                         label="Address 1*" />
+                         label="Address 1" />
                   <Field
                          name="address_2"
                          component={ renderField }
@@ -167,18 +168,27 @@ class PatientsForm extends Component {
                   <Field
                          name="city"
                          component={ renderField }
-                         label="City*" />
+                         label="City" />
                   <Field
                          name="st"
                          component={ renderStateDrop }
-                         label="State*" />
+                         label="State" />
                   <Field
                          name="zip"
                          component={ renderField }
-                         label="Zip*"
+                         label="Zip"
                          normalize={normalizeZip}
                         />
                 </td>
+              </tr>
+              <tr>
+                <td colSpan="2" style={{paddingRight:'0'}}>
+                  <Field
+                     name="ptnote"
+                     type="text"
+                     component={ renderTextArea }
+                     label="Notes" />
+                 </td>
               </tr>
             </tbody>
           </table>
